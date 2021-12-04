@@ -1,0 +1,7 @@
+<view class="tab-bar">
+    <block wx:for="{{tabBar}}" wx:key="{{tabBar.pagePath}}">
+        <view class="section_item" bindtap="navigateDetail" data-url="{{item.pagePath}}">
+            
+        </view>
+    </block>
+</view>

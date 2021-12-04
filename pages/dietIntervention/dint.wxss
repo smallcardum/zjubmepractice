@@ -1,0 +1,40 @@
+/* pages/dietIntervention/dint.wxss */
+.topBar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50rpx;
+    margin-bottom: 50rpx;
+}
+
+.navigator{
+    margin-left: 200rpx;
+}
+
+.dateTime{
+    font-weight: 700;
+}
+
+.dintContainer{
+    background-color: #e4e4e4;
+    
+}
+
+.dietInterContainer{
+    margin: 10rpx 50rpx 10rpx 50rpx;
+    background-color: white;
+    border-radius: 5rpx;
+}
+
+.mediumText{
+    font-size: medium;
+    font-weight: 600;
+    margin: 5rpx;
+}
+
+.dietInterContainer{
+    margin-bottom: 50rpx;
+}
+
+.dietName{
+    margin-bottom: 20rpx;
+}

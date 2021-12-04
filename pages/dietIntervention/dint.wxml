@@ -1,0 +1,22 @@
+<!--pages/dietIntervention/dint.wxml-->
+<view class="container">
+    <view class="title">饮食干预</view>
+    <view class="topBar">
+        <view class="dateTime">{{time}}</view>
+        <navigator url="./dietAnalysis/dian" class="navigator">
+            <text class="subTitle">生成分析报告</text>
+        </navigator>
+    </view>
+    
+    <view class="dintContainer">
+        <label wx:for="{{meal}}" wx:key="{{item.mealName}}">
+            <view class="dietInterContainer">
+                <view class="dietName">
+                    <text class="mediumText">{{item.mealName}}</text>
+                </view>
+                <view class="line"></view>
+                <view class="meal"></view>
+            </view>
+        </label>
+    </view>
+</view>

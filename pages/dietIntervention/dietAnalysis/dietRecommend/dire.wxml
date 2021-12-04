@@ -1,0 +1,25 @@
+<!--pages/dietIntervention/dietAnalysis/dietRecommend/dire.wxml-->
+<view class="container">
+    <view class="title">饮食推荐</view>
+    <view class="dateTime">{{time}}</view>
+
+    <view class="direContainer">
+        <label for="{{meal}}" wx:key="{{item.mealName}}"></label>
+        <view class="dietSelector">
+            <button>早餐</button>
+            <button>午餐</button>
+            <button>晚餐</button>
+            <button>加餐</button>
+        </view>
+        <view class="dietRecommendContainer">
+            <view>食物推荐</view>
+            <view class="dietRecommender">
+                
+            </view>
+        </view>
+    </view>
+
+    
+
+
+</view>

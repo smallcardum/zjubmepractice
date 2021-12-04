@@ -1,0 +1,10 @@
+/* pages/dietIntervention/dietAnalysis/dietRecommend/dire.wxss */
+.dietSelector{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.dietSelector button{
+    font-size: small;
+}

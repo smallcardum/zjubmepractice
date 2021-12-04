@@ -1,0 +1,24 @@
+<!--pages/dietIntervention/dietAnalysis/dian.wxml-->
+<view class="container">
+    <view class="title">营养分析</view>
+    <view class="topBar"> 
+        <view class="dateTime">{{time}}</view>
+        <navigator url="./dietRecommend/dire" class="navigator">
+            <text class="subTitle">查看饮食推荐</text>
+        </navigator>
+    </view>
+
+
+    <view class="dianContainer">
+        <view class="analysisContainer">
+            <view class="subTitle">营养分布</view>
+            <view class="line"></view>
+            <view>营养分析图</view>
+        </view>
+        <view class="analysisContainer">
+            <view class="subTitle">食物种类</view>
+            <view class="line"></view>
+            <view>食物种类图</view>
+        </view>
+    </view>
+</view>

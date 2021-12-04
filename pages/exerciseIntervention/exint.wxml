@@ -1,0 +1,10 @@
+<!--pages/exerciseIntervention/exint.wxml-->
+<view class="container">
+    <view class="title">运动管理</view>
+    <view class="dateTime">日期</view>
+    <view class="exintContainer">
+        <view class="exerciseContainer">
+            
+        </view>
+    </view>
+</view>

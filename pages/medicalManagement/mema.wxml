@@ -1,0 +1,28 @@
+<!--pages/medicalManagement/mema.wxml-->
+<view class="container">
+    <view class="title">用药管理</view>
+    <view class="line"></view>
+    <view class="memaContainer">
+        <view class="medicalContainer">
+            <label wx:for="{{items}}" wx:key="{{item.drugName}}">
+                <view class="medicineContainer" id="{{item.drugName}}">
+                    <view class="medicineDiscription">
+                        <view class="medicineSingle">
+                            <text class="mediumText" space="ensp">药物 </text>
+                            <text class="mediumText">{{item.drugName}}</text>
+                        </view>
+                        <view>
+                            <text space="ensp">{{item.frequency}} | {{item.takeTime}}</text>
+                        </view>
+                    </view>
+                    <view class="checkbox">
+                        <checkbox value="{{item.takeTime}}" checked="{{item.checked}}" bindtap="checkboxChange"/>
+                    </view>   
+                </view>
+            </label>
+        </view>
+        <view class="newDrug">
+            <button>编辑药物</button>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,57 @@
+{
+  "pages":[
+    
+
+    "pages/index/index",
+
+    "pages/login/login",
+
+    
+    "pages/wxml/index",
+    
+
+    
+    "pages/logs/logs",
+
+    "pages/bloodSugarMonitor/bsm",
+    "pages/medicalManagement/mema",
+    "pages/dietIntervention/dint",
+    "pages/dietIntervention/dietAnalysis/dian",
+    "pages/dietIntervention/dietAnalysis/dietRecommend/dire",
+    "pages/exerciseIntervention/exint",
+    "pages/doctorPatientCommuniation/dpc",
+    "pages/personalHomepage/peho"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "icon/_homePage.png",
+      "selectedIconPath": "icon/homePage.png"
+    },
+    {
+      "pagePath": "pages/doctorPatientCommuniation/dpc",
+      "text": "医患交流",
+      "iconPath": "icon/_docPatComm.png",
+      "selectedIconPath": "icon/docPatComm.png"
+    },
+    {
+      "pagePath": "pages/personalHomepage/peho",
+      "text": "我的",
+      "iconPath": "icon/_personal.png",
+      "selectedIconPath": "icon/personal.png"
+    }
+  ],
+  "color": "#999999",
+  "selectedColor": "#3B3A3C",
+  "backgroundColor": "#FFFFFF"
+  }
+}

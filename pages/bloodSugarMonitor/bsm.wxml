@@ -1,0 +1,33 @@
+<!--pages/bloodSugarMonitor/bsm.wxml-->
+<view class="container">
+    <view class="title">血糖监测</view>
+    <form class="page-body" bindsubmit="formSubmit" bindreset="formReset">
+        <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active weui-cell_disabled">
+                <view class="weui-cell__hd">
+                    <label class="weui-label">上次测量值</label>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" value="55" disabled />
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_active">
+                <view class="weui-cell__hd">
+                    <label class="weui-label">当前测量值</label>
+                </view>
+                <view class="weui-cell_bd">
+                    <input class="weui-input" type="digit" name="inputBloodSugar"/>
+                </view>
+            </view>
+            <view>
+                <view class="subTitle">血糖变化情况</view>
+                <view class="lineChart">这里放折线图</view>
+            </view>
+            <button type="primary" form-type="submit">记录</button>
+        </view>
+
+
+    </form>
+
+
+</view>

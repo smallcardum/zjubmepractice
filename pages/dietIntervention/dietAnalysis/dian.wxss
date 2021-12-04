@@ -1,0 +1,19 @@
+/* pages/dietIntervention/dietAnalysis/dian.wxss */
+.dateTime{
+    font-weight: 700;
+}
+
+.topBar{
+    display: flex;
+    flex-direction: row;
+    margin-left: 50rpx;
+    margin-bottom: 50rpx;
+}
+
+.navigator{
+    margin-left: 200rpx;
+}
+
+.analysisContainer{
+    margin-bottom: 50rpx;
+}

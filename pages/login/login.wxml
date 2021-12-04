@@ -1,0 +1,15 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+    <form>
+        <input class="input" placeholder="输入手机号码" bindinput="inputPhone"/>
+        <input class="input" placeholder="请输入密码" bindinput="inputPassword"/>
+
+        <button class="button" type="primary" bindtap="login">登录</button>
+
+        <button class="button">忘记密码</button>
+
+
+    </form>
+    
+
+</view>

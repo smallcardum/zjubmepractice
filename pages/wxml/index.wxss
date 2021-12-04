@@ -1,0 +1,13 @@
+/* pages/wxml/index.wxss */
+
+Page {
+    text-align: center;
+}
+
+.title {
+    color: red;
+}
+
+image {
+    margin-top: 200rpx;
+}

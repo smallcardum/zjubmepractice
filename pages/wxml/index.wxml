@@ -1,0 +1,8 @@
+<!--pages/wxml/index.wxml-->
+<text>pages/wxml/index.wxml</text>
+<image mode="widthFix" src="../../img/test.jpeg"></image>
+<view class="title">
+    <text>Hello {{wording}}</text>
+</view>
+
+<button bindtap="onClick">点击</button>

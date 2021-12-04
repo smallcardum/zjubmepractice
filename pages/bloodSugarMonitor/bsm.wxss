@@ -1,0 +1,28 @@
+/* pages/bloodSugarMonitor/bsm.wxss */
+
+@import "../../lib/weui.wxss";
+
+.page-body {
+    width: 100%;
+    flex-grow: 1;
+    /* overflow-x: hidden; */
+  }
+
+  .weui-cells__title {
+    margin-top: 16px;
+    margin-bottom: 3px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: var(--weui-FG-1);
+    font-size: 14px;
+    line-height: 1.4
+  }
+
+  .weui-cells {
+    margin-top: 8px;
+    background-color: var(--weui-BG-2);
+    line-height: 1.41176471;
+    font-size: 17px;
+    overflow: hidden;
+    position: relative
+  }

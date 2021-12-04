@@ -1,0 +1,28 @@
+{
+  "usingComponents": {},
+
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "icon/_homePage.png",
+      "selectedIconPath": "icon/homePage.png"
+    },
+    {
+      "pagePath": "pages/doctorPatientCommuniation/dpc",
+      "text": "医患交流",
+      "iconPath": "icon/_docPatComm.png",
+      "selectedIconPath": "icon/docPatComm.png"
+    },
+    {
+      "pagePath": "pages/personalHomepage/peho",
+      "text": "我的",
+      "iconPath": "icon/_personal.png",
+      "selectedIconPath": "icon/personal.png"
+    }
+  ],
+  "color": "#999999",
+  "selectedColor": "#3B3A3C",
+  "backgroundColor": "#FFFFFF"
+  }
+}

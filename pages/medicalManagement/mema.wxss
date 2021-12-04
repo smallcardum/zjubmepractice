@@ -1,0 +1,43 @@
+/* pages/medicalManagement/mema.wxss */
+
+.memaContainer {
+    background-color: #e4e4e4;
+    margin: 50rpx;
+}
+
+.mediumText{
+    font-size: medium;
+    font-weight: 700;
+    margin: 5rpx;
+}
+
+.largeText{
+    font-size: large;
+    font-weight: 700;
+}
+
+.medicineContainer{
+    display: flex;
+    flex-direction: row;
+    margin: 50rpx;
+    background-color: white;
+    border-radius: 20rpx;
+}
+
+.medicineSingle{
+    display: flex;
+    flex-direction: row;
+}
+
+.medicineDiscription{
+    display: flex;
+    flex-direction: column;
+    margin: 10rpx 0rpx 10rpx 30rpx;
+    /* margin-left: 50rpx;
+    margin-bottom: 10rpx; */
+}
+
+.checkbox{
+    margin-top: 20rpx;
+    margin-left: 100rpx;
+}
