@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="title">首页</view>
+  <view class="title">首页啊</view>
   <view class="line"></view>
   <navigator url="../bloodSugarMonitor/bsm" class="navigator">
     <button class="indexButton" type="primary">血糖监测</button>
