@@ -1,5 +1,6 @@
 // index.js
 // 获取应用实例
+import { userAuthAddUrl } from "../../utils/config"
 const app = getApp()
 
 Page({
@@ -66,6 +67,26 @@ Page({
   onClick: function() {
     this.setData({
       wording: 'boy'
+    })
+  },
+
+  tryUrl: function() {
+    let user = {
+      phone : "18888921909",
+      password : "123456",
+      registerTime : "2021-12-05",
+      lastLoginTime : "2021-12-05"
+    }
+    wx.request({
+      url: userAuthAddUrl,
+      data: user,
+      method: "POST",
+      header: {
+        'content-type': 'application/texts' // 默认值
+      },
+      success (res) {
+        console.log(res.data)
+      }
     })
   }
 })

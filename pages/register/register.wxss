@@ -1,0 +1,71 @@
+/* pages/register/register.wxss */
+.container {
+  height: 100%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-size: 34rpx;
+}
+
+.registe {
+  width: 670rpx;
+  margin-left: 38rpx;
+  margin-right: 38rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #808080;
+  font-size: 36rpx;
+  height: 80rpx;
+  align-items: center;
+}
+
+.registe>view:first-child {
+  width: 160rpx;
+  margin-left: 14rpx;
+}
+
+.registe>view:last-child {
+  width: 500rpx;
+  text-align: right;
+  margin-right: 14rpx;
+}
+
+.error-info {
+  text-align: center;
+  font-size: 12px;
+  color: red;
+}
+
+.registeRadio {
+  width: 670rpx;
+  margin-left: 38rpx;
+  margin-right: 38rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #808080;
+  font-size: 36rpx;
+  height: fit-content;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.registeRadio>view:first-child {
+  width: 540rpx;
+  margin-left: 14rpx;
+}
+
+.registeRadio>view:last-child {
+  width: 120rpx;
+  text-align: right;
+  margin-right: 14rpx;
+}
+
+.btn {
+  margin-top: 50rpx;
+  margin-bottom: 100rpx;
+}

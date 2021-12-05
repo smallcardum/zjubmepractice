@@ -1,1 +1,51 @@
 /* pages/login/login.wxss */
+/**index.wxss**/
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y:auto;
+}
+
+.login-content {
+  height: 200rpx;
+  margin-top: 360rpx;
+}
+
+.login {
+  width: 460rpx;
+  height: 80rpx;
+  border-bottom: 1px solid rgb(134, 134, 134);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.login > input {
+  height: 78rpx;
+  font-size: 42rpx;
+  color: rgb(43, 41, 41);
+  margin-left: 12rpx;
+  font-family: AlibabaPuHuiTiM;
+}
+
+.dot {
+  height: 28rpx;
+  width: 28rpx;
+  background-color: #BFCC6D;
+  border-radius: 100%;
+}
+
+.login_list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70rpx;
+}
+
+.btn {
+  margin-top: 30rpx;
+}
+

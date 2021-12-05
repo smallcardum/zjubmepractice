@@ -1,0 +1,152 @@
+<!--pages/register/register.wxml-->
+<view class="container">
+  <view class="title">基本信息</view>
+    <view class="registe">
+      <view>姓名</view>
+      <view>
+        <input type="text" value="{{name}}" bindblur="nameInput" bindinput="nameInput" />
+      </view>
+    </view>
+    <view class="error-info" wx:if="{{nameError==true}}">请输入姓名</view>
+    <view class="registe">
+      <view>性别</view>
+      <view>
+        <picker mode="selector" bindchange="bindSexChange" value="{{sex}}" range="{{sexArr}}" >
+          <view class='weui-input'>{{sex}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="registe">
+      <view>出生日期</view>
+      <view>
+        <picker mode="date" bindchange="bindBirthDateChange" value="{{birthDate}}">
+          <view class='weui-input'>{{birthDate}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="registe">
+      <view>密码</view>
+      <view>
+        <input bindblur="validatePasswordAgain" type="text" bindinput="passWordInput" />
+      </view>
+    </view>
+    <view class="registe">
+      <view>确认密码</view>
+      <view>
+        <input bindblur="validatePassword" type="text" bindinput="passWordCheckInput" placeholder='请再次输入密码' />
+      </view>
+    </view>
+    <view class="error-info" wx:if="{{passwordError==true}}">密码重复输入有误</view>
+    <view class="registe">
+      <view>手机号码</view>
+      <view>
+        <input type="number" value="{{phoneNumber}}"bindinput="phoneNumberInput" bindblur="phoneNumberCheck" />
+      </view>
+    </view>
+    <view class="error-info" wx:if="{{phoneNumberError==true}}">{{phoneNumberErrorMsg}}</view>
+    <view class="registe">
+      <view>劳动强度</view>
+      <view>
+        <picker mode="selector" value='{{profession}}' range='{{professionArr}}' bindchange='bindprofessionChange'>
+          <view class='weui-input'>{{profession}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="registe">
+      <view>身高</view>
+      <view>
+        <input type="digit" bindinput="heightInput" placeholder='单位：米' />
+      </view>
+    </view>
+    <view class="registe">
+      <view>体重</view>
+      <view>
+        <input type="digit" bindinput="weightInput" placeholder='单位：千克' />
+      </view>
+    </view>
+
+    <!--诊断分级信息-->
+    <view class="registeRadio">
+      <view>是否糖尿病前期史</view>
+      <view>
+        <switch type="checkbox" checked="{{r1}}" bindchange="r1Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否久坐或久坐少动</view>
+      <view>
+        <switch type="checkbox" checked="{{r2}}" bindchange="r2Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否一级亲属中有2型糖尿病家族史</view>
+      <view>
+        <switch type="checkbox" checked="{{r3}}" bindchange="r3Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否妊娠期糖尿病病史的妇女</view>
+      <view>
+        <switch type="checkbox" checked="{{r4}}" bindchange="r4Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否高血压或正在接受降压治疗</view>
+      <view>
+        <switch type="checkbox" checked="{{r5}}" bindchange="r5Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否血脂异常或正在接收调脂治疗</view>
+      <view>
+        <switch type="checkbox" checked="{{r6}}" bindchange="r6Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否动脉粥样硬化性心脑血管疾病</view>
+      <view>
+        <switch type="checkbox" checked="{{r7}}" bindchange="r7Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否一过性类固醇糖尿病病史</view>
+      <view>
+        <switch type="checkbox" checked="{{r8}}" bindchange="r8Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否多囊卵巢综合征或伴有胰岛素抵抗相关的临床状态</view>
+      <view>
+        <switch type="checkbox" checked="{{r9}}" bindchange="r9Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否长期接受抗精神病药物或抗抑郁症药物治疗和他汀类药物治疗</view>
+      <view>
+        <switch type="checkbox" checked="{{r10}}" bindchange="r10Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否有典型糖尿病症状且随机静脉血浆葡萄糖大于等于11.1mmol/L</view>
+      <view>
+        <switch type="checkbox" checked="{{r11}}" bindchange="r11Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否空腹静脉血浆葡萄糖大于等于7mmol/L</view>
+      <view>
+        <switch type="checkbox" checked="{{r12}}" bindchange="r12Change"/>
+      </view>
+    </view>
+    <view class="registeRadio">
+      <view>是否口服葡萄糖耐量试验2h血浆葡萄糖大于等于11.1mmol/L</view>
+      <view>
+        <switch type="checkbox" checked="{{r13}}" bindchange="r13Change"/>
+      </view>
+    </view>
+ 
+
+    <button bindtap="confirm_register" class="btn" type="primary">
+      <text>OK</text>
+    </button>
+</view>

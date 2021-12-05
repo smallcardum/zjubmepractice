@@ -1,15 +1,21 @@
 <!--pages/login/login.wxml-->
 <view class="container">
-    <form>
-        <input class="input" placeholder="输入手机号码" bindinput="inputPhone"/>
-        <input class="input" placeholder="请输入密码" bindinput="inputPassword"/>
-
-        <button class="button" type="primary" bindtap="login">登录</button>
-
-        <button class="button">忘记密码</button>
-
-
-    </form>
-    
-
+  <view class="login-content">
+    <view class="login">
+        <view class="dot"/>
+        <input type="text" bindinput="userNameInput" value="{{userName}}" cursor-spacing="30rpx" placeholder="账号"/>
+    </view>
+    <view class="login">
+      <view class="dot"/>
+        <input type="text" bindinput="userPasswordInput" password="true" value="{{userPassword}}" cursor-spacing="30rpx" placeholder="密码" />
+    </view>
+  </view>
+  <view class="login_list">
+    <button class="btn" type="primary" bindtap="logIn">
+      <text>登录</text>
+    </button>
+    <button class="btn" type="default" bindtap="gotoRegister">
+      <text>注册</text>
+    </button>
+  </view>
 </view>

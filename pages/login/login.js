@@ -1,11 +1,67 @@
 // pages/login/login.js
+import { userAuthFindUrl } from "../../utils/config"
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        userName: "",
+        userPassword: "",
+    },
 
+    userNameInput(e) {
+        this.setData({
+            userName: e.detail.value
+          });
+    },
+
+    userPasswordInput(e) {
+        this.setData({
+            userPassword: e.detail.value
+          });
+    },
+
+    gotoRegister() {
+        wx.navigateTo({
+            url: "/pages/register/register"
+          });
+    },
+
+    logIn() {
+        let upsw = this.data.userPassword
+        let user = {
+            phone : this.data.userName,
+          }
+          wx.request({
+            url: userAuthFindUrl,
+            data: user,
+            method: "POST",
+            header: {
+              'content-type': 'application/texts' // 默认值
+            },
+            success (res) {
+                console.log("userAuth=="+res.data)
+                if(res.data.length != 0) {
+                    let psw = res.data[0].password
+                    if(psw == upsw) {
+                        wx.switchTab({
+                          url: "/pages/index/index"
+                        });
+                    } else {
+                        wx.showToast({
+                          title: '密码错误',
+                          icon: 'error'
+                        })
+                    }
+                } else {
+                    wx.showToast({
+                        title: '找不到用户',
+                        icon: 'error'
+                      })
+                }
+            }
+          })
     },
 
     /**
