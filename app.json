@@ -12,7 +12,8 @@
     "pages/exerciseIntervention/exint",
     "pages/doctorPatientCommuniation/dpc",
     "pages/personalHomepage/peho",
-    "pages/register/register"
+    "pages/register/register",
+    "pages/interventionPlan/plan"
   ],
   "window": {
     "backgroundTextStyle": "dark",

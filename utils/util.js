@@ -25,6 +25,8 @@ const formatTime2 = date => {
   return [year, month, day].map(formatNumber).join('-')
 }
 
+
+
 module.exports = {
   formatTime,
   formatTime2

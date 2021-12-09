@@ -45,6 +45,8 @@ Page({
                 if(res.data.length != 0) {
                     let psw = res.data[0].password
                     if(psw == upsw) {
+                        wx.setStorageSync('id', res.data[0].id)
+                        wx.setStorageSync('phone', res.data[0].phone)
                         wx.switchTab({
                           url: "/pages/index/index"
                         });

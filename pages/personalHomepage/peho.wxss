@@ -1,1 +1,33 @@
 /* pages/personalHomepage/peho.wxss */
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 92%;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding: 25rpx 5rpx;
+  border-bottom: #A9A9A9 solid 1rpx;
+}
+
+.item>view:first-child {
+  font-weight: bold;
+  width: 50%;
+  text-align: start;
+}
+
+.item>view:last-child {
+  width: 50%;
+  text-align: end;
+}
+
+.level {
+  width: 45%;
+  text-align: end;
+}

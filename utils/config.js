@@ -3,20 +3,20 @@
  */
 let env = 'local';
 
-var vicoBaseUrl = '';
-var vicoBaseWebSocketUrl = '';
+var baseUrl = '';
 if(env == 'local') {
-  vicoBaseUrl = 'http://localhost:8080';
-  vicoBaseWebSocketUrl = 'ws://localhost:8080';
+  baseUrl = 'http://localhost:8080';
 } 
 
-const userAuthAddUrl = vicoBaseUrl + '/userAuth/addReturnId'
-const userAuthFindUrl = vicoBaseUrl + '/userAuth/find'
-const userInfoAddUrl = vicoBaseUrl + '/userInfo/add'
+const userAuthAddUrl = baseUrl + '/userAuth/addReturnId'
+const userAuthFindUrl = baseUrl + '/userAuth/find'
+const userInfoAddUrl = baseUrl + '/userInfo/add'
+const userInfoFindUrl = baseUrl + '/userInfo/find'
 
 
 export {
   userAuthAddUrl,
   userAuthFindUrl,
   userInfoAddUrl,
+  userInfoFindUrl,
 }

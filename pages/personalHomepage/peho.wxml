@@ -1,2 +1,29 @@
 <!--pages/personalHomepage/peho.wxml-->
-<text>pages/personalHomepage/peho.wxml</text>
+<view class='container'>
+  <view class="list">
+    <view class="item">
+      <view>用户ID</view>
+      <view>{{userID}}</view>
+    </view>
+    <view class="item">
+      <view>性别</view>
+      <view>{{sex}}</view>
+    </view>
+    <view class="item">
+      <view>出生日期</view>
+      <view>{{birthDate}}</view>
+    </view>
+    <view class="item">
+      <view>身高</view>
+      <view>{{height}}</view>
+    </view>
+    <view class="item">
+      <view>体重</view>
+      <view>{{weight}}</view>
+    </view>
+    <view class="item" bindtap="gotoPlan">
+      <view>当前分级</view>
+      <view class="level">{{level}}</view>
+    </view>
+  </view>
+</view>
