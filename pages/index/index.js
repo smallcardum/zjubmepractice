@@ -70,6 +70,8 @@ Page({
     })
   },
 
+
+  /*
   tryUrl: function() {
     let user = {
       phone : "18888921909",
@@ -89,4 +91,6 @@ Page({
       }
     })
   }
+   */
+
 })

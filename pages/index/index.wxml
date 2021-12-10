@@ -14,5 +14,4 @@
   <navigator url="../exerciseIntervention/exint" class="navigator">
     <button class="indexButton" type="primary">运动干预</button>
   </navigator>
-  <button class="indexButton" type="primary" bindtap="tryUrl">测试</button>
 </view>

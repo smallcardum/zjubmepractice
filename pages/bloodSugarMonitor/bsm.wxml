@@ -1,33 +1,22 @@
 <!--pages/bloodSugarMonitor/bsm.wxml-->
-<view class="container">
-    <view class="title">血糖监测</view>
-    <form class="page-body" bindsubmit="formSubmit" bindreset="formReset">
-        <view class="weui-cells weui-cells_form">
-            <view class="weui-cell weui-cell_active weui-cell_disabled">
-                <view class="weui-cell__hd">
-                    <label class="weui-label">上次测量值</label>
-                </view>
-                <view class="weui-cell__bd">
-                    <input class="weui-input" value="55" disabled />
-                </view>
-            </view>
-            <view class="weui-cell weui-cell_active">
-                <view class="weui-cell__hd">
-                    <label class="weui-label">当前测量值</label>
-                </view>
-                <view class="weui-cell_bd">
-                    <input class="weui-input" type="digit" name="inputBloodSugar"/>
-                </view>
-            </view>
-            <view>
-                <view class="subTitle">血糖变化情况</view>
-                <view class="lineChart">这里放折线图</view>
-            </view>
-            <button type="primary" form-type="submit">记录</button>
-        </view>
-
-
-    </form>
-
-
+<view class='container'>
+<view class="title">血糖监测</view>
+  <view class="list">
+    <view class="item">
+      <view>上次测量值</view>
+      <view>{{lastValue}} mmol/L</view>
+    </view>
+    <view class="item">
+      <view>当前测量值</view>
+      <input type="digit" bindinput="inputValue" placeholder="单位mmol/L">{{value}}</input>
+    </view>
+  </view>
+  <view class="btn_list">
+    <button type="primary" class="btn_item" bindtap="commitRecord">提交记录</button>
+    <button type="default" class="btn_item" bindtap="changePlan">调整方案</button>
+  </view>
+  <view class="line_title">血糖变化情况</view>
+  <view wx:if="{{list.length}}" class="lineChart">
+    <canvas canvas-id="lineCanvas"  style="height: 360rpx; width: {{windowWidth*0.92}}px;" ></canvas>
+  </view>
 </view>

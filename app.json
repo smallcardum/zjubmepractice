@@ -13,7 +13,8 @@
     "pages/doctorPatientCommuniation/dpc",
     "pages/personalHomepage/peho",
     "pages/register/register",
-    "pages/interventionPlan/plan"
+    "pages/interventionPlan/plan",
+    "pages/bloodSugarMonitor/plan/plan"
   ],
   "window": {
     "backgroundTextStyle": "dark",
