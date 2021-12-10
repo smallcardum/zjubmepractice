@@ -17,6 +17,6 @@
   </view>
   <view class="line_title">血糖变化情况</view>
   <view wx:if="{{list.length}}" class="lineChart">
-    <canvas canvas-id="lineCanvas"  style="height: 360rpx; width: {{windowWidth*0.92}}px;" ></canvas>
+    <canvas canvas-id="lineCanvas"  style="height: 360rpx; width: {{windowWidth*0.92}}px;" bindtouchstart="touchHandler" bindtouchmove="moveHandler" bindtouchend="touchEndHandler"></canvas>
   </view>
 </view>

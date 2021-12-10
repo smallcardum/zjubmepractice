@@ -1,1 +1,30 @@
 /* pages/bloodSugarMonitor/plan/plan.wxss */
+@import '/lib/weui.wxss';
+
+.makePlan {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  padding: 0rpx 17rpx;
+  margin-top: 30rpx;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 12rpx 0rpx;
+  border-top: #A9A9A9 1rpx solid;
+  border-bottom: #A9A9A9 1rpx solid;
+}
+
+.item>view {
+  width: 50%;
+
+}
+
+.item>input {
+  width: 50%;
+  text-align: end;
+}

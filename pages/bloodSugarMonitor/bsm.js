@@ -1,5 +1,5 @@
 // pages/bloodSugarMonitor/bsm.js
-import { gluRecordFindUrl, gluRecordAddUrl } from "../../utils/config"
+import { gluRecordFindUrl, gluRecordAddUrl, gluPlanFindUrl } from "../../utils/config"
 var wxCharts = require('../../utils/wxcharts.js');
 import { formatTime2 } from "../../utils/util"
 
@@ -16,9 +16,11 @@ Page({
         list: [],
         enableScroll: false,
         windowWidth: 375,
-        planId: "",
+        planId: 0,
+        target: "",
     },
 
+    //plan id 怎么搞 有bug
 
     inputValue(e) {
         this.setData({
@@ -78,12 +80,26 @@ Page({
                 that.setData({
                     list,
                     lastValue,
-                    planId: data[0].planId,
                 })
                 that.drawlinechart()
-            }
+            } 
           }
         })
+    },
+
+    touchHandler: function (e) {
+      lineChart.scrollStart(e);
+    },
+    moveHandler: function (e) {
+      lineChart.scroll(e);
+    },
+    touchEndHandler: function (e) {
+      lineChart.scrollEnd(e);
+      lineChart.showToolTip(e, {
+        format: function (item, category) {
+          return category + ' ' + item.name + ':' + item.data
+        }
+      });
     },
 
   createData: function () {
@@ -94,7 +110,7 @@ Page({
       color: [],
     };
     var glus = this.data.list;
-    if (glus.length > 8) {
+    if (glus.length > 5) {
       that.setData({
         enableScroll: true
       })
@@ -104,9 +120,10 @@ Page({
         enableScroll: false
       })
     }
+    let target = this.data.target
     chartsdate.date = glus.map(function (item) {
       chartsdate.glu.push(item.value);
-      chartsdate.color.push('#000000');
+      chartsdate.color.push(item.value > target ? '#FF0000' :'#000000');
       return item.date.slice(5,10)
     })
     return chartsdate;
@@ -114,14 +131,14 @@ Page({
 
   drawlinechart: function (e) {
     var weekData = this.createData();
-    console.log(JSON.stringify(this.data.list)+"==="+JSON.stringify(weekData))
+    console.log(JSON.stringify(this.data.list)+"==="+JSON.stringify(weekData)+"scoll"+this.data.enableScroll)
     lineChart = new wxCharts({
       canvasId: 'lineCanvas',
       type: 'line',
       categories: weekData.date,
       animation: true,
       series: [{
-        name: '血糖值',
+        name: '血糖',
         data: weekData.glu,
         pointColor: weekData.color,
       }],
@@ -130,6 +147,7 @@ Page({
           return val.toFixed(1);
         },
         min: 0,
+        max: 10,
         disableGrid: false,
         fontSize: 8,
       },
@@ -139,8 +157,8 @@ Page({
       width: this.data.windowWidth*0.92,
       enableScroll: this.data.enableScroll,
       height: 160,
-      dataLabel: false,
-      dataPointShape: false,
+      dataLabel: true,
+      dataPointShape: true,
       legend: false,
       extra: {
         lineStyle: 'curve'
@@ -151,11 +169,37 @@ Page({
     }, 1000)
   },
 
+
+  
+  getPlan() {
+    let that = this
+    wx.request({
+      url: gluPlanFindUrl,
+      method: "POST",
+      data: {userId: id},
+      header: {
+        'content-type': 'application/texts' // 默认值
+      },
+      success(res) {
+        if(res.data.length) {
+          that.setData({
+            target: res.data[0].target
+          })
+        } else {
+          wx.showToast({
+            title: '请制定监测方案',
+            icon: 'none',
+          })
+        }
+      }
+    })
+  },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.getHistoryList()
+      this.getPlan()
+      this.getHistoryList()
     },
 
     /**

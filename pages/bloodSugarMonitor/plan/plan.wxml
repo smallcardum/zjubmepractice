@@ -1,2 +1,27 @@
 <!--pages/bloodSugarMonitor/plan/plan.wxml-->
-<text>pages/bloodSugarMonitor/plan/plan.wxml</text>
+<view class="container">
+  <view class="title">血糖监测方案</view>
+  <view class="subTitle">请在医生指导下制定本方案</view>
+  <view class="makePlan">
+    <view class="item">
+      <view>您的目标血糖值为</view>
+      <input type="digit" bindinput="inputTarget" placeholder="单位mmol/L" value="{{target}}">{{target}} mmol/L</input>
+    </view>
+    <view class="item">
+      <view>一周有几天需要测量</view>
+      <input type="number" bindinput="inputWeek" placeholder="请输入“1-7”的数字" value="{{week}}">{{week}}</input>
+    </view>
+    <view style="margin-top: 30rpx;">若当天需要测量，请选择测量时间段：</view>
+    <view class="weui-cells weui-cells_after-title">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.value}}" style="padding: 7rpx 0rpx">
+            <view class="weui-cell__hd">
+              <checkbox value="{{item.value}}" checked="{{item.checked}}"/>
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+  </view>
+  <button type="primary" style="margin-top: 50rpx;" bindtap="confirm">确认更改</button>
+</view>
