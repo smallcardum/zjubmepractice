@@ -16,7 +16,7 @@
     "pages/interventionPlan/plan",
     "pages/bloodSugarMonitor/plan/plan",
     "pages/doctorPatientCommuniation/communicate-list/communicate-list",
-    "pages/doctorPatientCommuniation/communicate-list/communicate-chat"
+    "pages/doctorPatientCommuniation/communicate-chat/communicate-chat"
   ],
   "window": {
     "backgroundTextStyle": "dark",
