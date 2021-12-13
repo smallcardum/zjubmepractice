@@ -37,6 +37,6 @@ const formatTime3 = date => {
 
 module.exports = {
   formatTime,
-  formatTime2，
+  formatTime2,
   formatTime3
 }
