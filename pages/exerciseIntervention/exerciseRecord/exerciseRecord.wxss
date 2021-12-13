@@ -1,0 +1,32 @@
+/* pages/patient-info/assessment/assessment.wxss */
+.itemTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #A9A9A9;
+    font-weight: bold;
+    margin-top: 24rpx;
+    margin-left: 24rpx;
+    margin-right: 24rpx;
+}
+
+.line {
+    border-top: 1px #000000 solid;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 8rpx;
+    margin-bottom: 6rpx;
+}
+
+.sportDone{
+    display: flex;
+    flex-direction: row;
+    margin-left: 5%;
+}
+
+.no_record {
+    display: flex;
+    justify-content: center;
+    margin-top: 24rpx;
+    color: #A9A9A9;
+}
