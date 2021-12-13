@@ -17,6 +17,8 @@ const gluRecordAddUrl = baseUrl + '/gluRecord/add'
 const gluPlanAddUrl = baseUrl + '/gluPlan/add'
 const gluPlanFindUrl = baseUrl + '/gluPlan/find'
 const gluPlanDeleteUrl = baseUrl + '/gluPlan/delete'
+const sportDefaultFindUrl = vicoBaseUrl + '/sportDefault/find'
+const sportItemFindUrl = vicoBaseUrl + '/sportItem/find'
 
 export {
   userAuthAddUrl,
@@ -28,4 +30,6 @@ export {
   gluPlanAddUrl,
   gluPlanFindUrl,
   gluPlanDeleteUrl,
+  sportDefaultFindUrl,
+  sportItemFindUrl,
 }
