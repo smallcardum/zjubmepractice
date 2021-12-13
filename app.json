@@ -14,7 +14,9 @@
     "pages/personalHomepage/peho",
     "pages/register/register",
     "pages/interventionPlan/plan",
-    "pages/bloodSugarMonitor/plan/plan"
+    "pages/bloodSugarMonitor/plan/plan",
+    "pages/doctorPatientCommuniation/communicate-list/communicate-list",
+    "pages/doctorPatientCommuniation/communicate-list/communicate-chat"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -33,7 +35,7 @@
         "selectedIconPath": "icon/homePage.png"
       },
       {
-        "pagePath": "pages/doctorPatientCommuniation/dpc",
+        "pagePath": "pages/doctorPatientCommuniation/communicate-list/communicate-list",
         "text": "医患交流",
         "iconPath": "icon/_docPatComm.png",
         "selectedIconPath": "icon/docPatComm.png"
