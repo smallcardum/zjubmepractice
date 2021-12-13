@@ -1,6 +1,6 @@
 <!--pages/exerciseIntervention/exint.wxml-->
 <view class="container">
-    <view class="title">运动管理</view>
+    <view style="font-size: x-large; font-weight: 700;text-align: center;">运动管理</view>
     <view class="dateTime">{{time}}：你的今日份运动推荐</view>
     <view class="line"></view>
     <text decode='true' class="subtitle">&emsp;&emsp;&ensp;运动内容&emsp;&emsp;&emsp;&emsp;&ensp;运动项目</text>
