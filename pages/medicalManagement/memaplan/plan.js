@@ -1,42 +1,18 @@
-// pages/dietIntervention/dint.js
-var util = require('../../utils/util');
-
+// pages/medicalManagement/memaplan/plan.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        meal: [
-            {
-                mealName: '早餐',
-                meals: []
-            },
-            {
-                mealName: '午餐',
-                meals: []
-            },
-            {
-                mealName: '晚餐',
-                meals: []
-            },
-            {
-                mealName: '加餐',
-                meals: []
-            }
-        ]
+
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var time = util.formatTime(new Date());
 
-        this.setData({
-            time: time
-        });
-        
     },
 
     /**

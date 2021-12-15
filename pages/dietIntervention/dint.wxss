@@ -37,4 +37,19 @@
 
 .dietName{
     margin-bottom: 20rpx;
+    display: flex;
+}
+
+.dietButton{
+    margin-right: 5rpx;
+}
+
+.singleMeal{
+    display: flex;
+}
+
+.mealAmount{
+    color: grey;
+    font-size: medium;
+    
 }

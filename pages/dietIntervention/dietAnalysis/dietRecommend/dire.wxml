@@ -4,17 +4,45 @@
     <view class="dateTime">{{time}}</view>
 
     <view class="direContainer">
-        <label for="{{meal}}" wx:key="{{item.mealName}}"></label>
+        <!-- <label for="{{meal}}" wx:key="{{item.mealName}}"></label> -->
         <view class="dietSelector">
-            <button>早餐</button>
-            <button>午餐</button>
-            <button>晚餐</button>
-            <button>加餐</button>
+            <button bindtap="typeChange" data-bean="0">早餐</button>
+            <button bindtap="typeChange" data-bean="1">午餐</button>
+            <button bindtap="typeChange" data-bean="2">晚餐</button>
+            <button bindtap="typeChange" data-bean="3">加餐</button>
         </view>
         <view class="dietRecommendContainer">
-            <view>食物推荐</view>
+            <view class="dietRecommendContainerTitle"><text class="largeText">食物推荐</text></view>
             <view class="dietRecommender">
+                <label wx:for="{{showRecommend}}" wx:key="{{item.name}}" wx:for-item="food">
+                    <view class="foodSingle">
+                        <view class="foodSingleDescription">
+                            <view class="foodName"><text class="largeText">{{food.name}}</text></view>
+                            <view class="appraisal"><text class="mediumText">{{rcmdword[random[index][0]]}},{{rcmdword[random[index][1]]}},{{rcmdword[random[index][2]]}}</text></view>
+                            <view class="nutritionContent" hidden="{{food.hidden}}">
+                                <view>配料：</view>
+                                <label wx:for="{{food.ingredients}}" wx:key="{{item.ingredientsName}}">
+                                    <view>{{item.ingredientsName}}</view>
+                                
+                                </label>
+                            </view>
+                            <view class="line"></view>
+                        </view>
+                        <view wx:if="{{food.hidden == 1}}" class="nutritionConsult" >
+                            <button size="mini" bindtap="showNutrition"  data-bean="{{food}}"><text style="font-size: smaller;">配料表</text></button>
+                        </view>
+                        <view wx:if="{{food.hidden == 0}}" class="nutritionConsult"
+                        >
+                            <button size="mini" bindtap="showNutrition" data-bean="{{food}}"><text style="font-size: smaller;">收起</text></button>
+                        </view>
+                        
+                    </view>
+                    
+                </label>
                 
+            </view>
+            <view class="changeRecommend" bindtap="packageChange">
+                <button>换一换</button>
             </view>
         </view>
     </view>

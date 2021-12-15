@@ -31,6 +31,7 @@
 
 .medicineDiscription{
     display: flex;
+    flex: 1;
     flex-direction: column;
     margin: 10rpx 0rpx 10rpx 30rpx;
     /* margin-left: 50rpx;
@@ -38,6 +39,11 @@
 }
 
 .checkbox{
-    margin-top: 20rpx;
-    margin-left: 100rpx;
+    width: 150rpx;
+    /* margin-top: 20rpx; */
+    /* margin-left: 180rpx; */
+    /* margin-right: 0rpx; */
+    text-align: right;
+    position: relative;
+    align-items: center;
 }

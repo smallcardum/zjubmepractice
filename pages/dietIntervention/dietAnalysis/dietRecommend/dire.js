@@ -1,3 +1,6 @@
+import { userInfoFindUrl } from "../../../../utils/config"
+import { foodRcmdFindUrl } from "../../../../utils/util"
+
 // pages/dietIntervention/dietAnalysis/dietRecommend/dire.js
 Page({
 
@@ -5,65 +8,169 @@ Page({
      * 页面的初始数据
      */
     data: {
-        meal:[{
-            mealName:'早餐',
-            food:[{
-                foodName:'白粥',
-            },{
-                foodName:'油条',
-            },{
-                foodName:'豆浆',
-            },{
-                foodName:'鸡蛋',
-            }]
-        },{
-            mealName:'午餐',
-            food:[{
-                foodName:'鸡腿',
-            },{
-                foodName:'大饼',
-            },{
-                foodName:'青菜',
-            },{
-                foodName:'牛肉',
-            }]
-        },{
-            mealName:'晚餐',
-            food:[{
-                foodName:'番薯',
-            },{
-                foodName:'米饭',
-            },{
-                foodName:'黄瓜',
-            },{
-                foodName:'排骨',
-            }]
-        },{
-            mealName:'加餐',
-            food:[{
-                foodName:'炒面',
-            },{
-                foodName:'蛋卷',
-            },{
-                foodName:'面包',
-            },{
-                foodName:'酸奶',
-            }]
-        }]
+
+        level: 0,
+        mealType: 0,
+        package: 0,
+        recommend: "",
+        rcmdword: ["好吃", "美味", "营养", "健康", "低糖", "低脂", "低盐", "低钠", "低胆固醇", "易消化", "好吸收", "清宿便", "排肠毒", "润肠道", "利尿", "降血糖", "降血脂", "降血压", "温和", "养胃", "护肾", "护肝", "护心", "润肺"]
+    },
+
+    getUserInfo() {
+        let that = this
+        let id = {
+            userId: Number(this.data.id),
+        }
+        wx.request({
+          url: userInfoFindUrl,
+          method: "POST",
+          data: id,
+          header: {
+            'content-type': 'application/texts' // 默认值
+          },
+          success(res) {
+            let data = res.data[0]
+            that.setData({
+                level : data.level
+            })
+            // console.log("level = " + that.data.level)
+            that.getFoodRecommend()
+          }
+        })
+        // this.getFoodRecommend()
+    },
+
+    getFoodRecommend() {
+        let that = this
+        let level = {
+            suit : this.data.level,
+            mealType : this.data.mealType,
+            packages : this.data.package,
+        }
+        // console.log(level.packages)
+        wx.request({
+            url: foodRcmdFindUrl,
+            method: "POST",
+            data: level,
+            header:{
+                'content-type': 'application/texts'
+            },
+            success(res){
+                let data = res.data
+                that.setData({
+                    recommend: data
+                })
+                // console.log(that.data.recommend)
+                let rcmd = that.data.recommend
+                let newRcmd = []
+                let names = []
+                let randomNum = []
+                for(let i = 0; i < rcmd.length; ++i){
+                    // console.log(rcmd[i].dishName)
+                    if(names.indexOf(rcmd[i].dishName) == -1){
+                        // console.log("haha")
+                        newRcmd.push({
+                            name: rcmd[i].dishName,
+                            ingredients:[{
+                                ingredientsName: rcmd[i].name,
+                                weight: rcmd[i].weight
+                            }],
+                            hidden: 1,
+                            rcmdId: i
+                        })
+                        names.push(rcmd[i].dishName)
+                    }else{
+                        newRcmd[names.indexOf(rcmd[i].dishName)].ingredients.push({
+                            ingredientsName: rcmd[i].name,
+                            weight: rcmd[i].weight
+                        })
+                    }
+                }
+                for(let i = 0; i < newRcmd.length; ++i){
+                    let randgroup = []
+                    for(let j = 0; j < 3; ++j){
+                        var randNum = Math.floor(Math.random()*24)
+                        if(randgroup.indexOf(randNum) == -1){
+                            randgroup.push(randNum)
+                        }else{
+                            j--
+                        }
+                    }
+                    randomNum.push(randgroup)
+                }
+                that.setData({
+                    showRecommend: newRcmd,
+                    random: randomNum
+                })
+            }
+        })
+    },
+
+    packageChange(e){
+        let that = this
+        let newPackage = that.data.package
+        switch(that.data.package){
+            case 0:
+                newPackage = 1
+                break
+            case 1:
+                newPackage = 0
+                break
+        }
+        that.setData({
+            package: newPackage
+        })
+        that.getFoodRecommend()
+    },
+
+    typeChange(e){
+        let newType = parseInt(e.currentTarget.dataset.bean)
+        let that = this
+        that.setData({
+            mealType: newType
+        })
+        that.getFoodRecommend()
+    },
+
+    showNutrition(e){
+        console.log(e.currentTarget.dataset)
+        let that = this
+        var hidden = e.currentTarget.dataset.bean.hidden
+        console.log(that.data)
+        var id = e.currentTarget.dataset.bean.rcmdId
+
+        var str = 'showRecommend[' + id + '].hidden'
+        switch(hidden){
+            case 0:
+                hidden = 1
+                break
+            case 1:
+                hidden = 0
+                break
+        }
+        that.setData({
+            [str] : hidden
+        })
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let id = wx.getStorageSync('id')
+        this.setData({
+            id,
+        })
+        this.getUserInfo();
+        // console.log("level=" + this.data.level);
+        // this.getFoodRecommend();
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
+        
     },
 
     /**

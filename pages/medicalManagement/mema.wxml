@@ -3,26 +3,52 @@
     <view class="title">用药管理</view>
     <view class="line"></view>
     <view class="memaContainer">
+        <!-- <checkbox-group  bindchange="drugTaken"> -->
         <view class="medicalContainer">
-            <label wx:for="{{items}}" wx:key="{{item.drugName}}">
-                <view class="medicineContainer" id="{{item.drugName}}">
-                    <view class="medicineDiscription">
+            <label wx:for="{{items}}" wx:key="{{item.name}}" wx:for-item="item">
+                <view class="medicineContainer" id="{{item.name}}" data-bean="{{item}}">
+                    <view wx:if="{{item.checked==0}}" class="medicineDiscription">
                         <view class="medicineSingle">
                             <text class="mediumText" space="ensp">药物 </text>
-                            <text class="mediumText">{{item.drugName}}</text>
+                            <text class="mediumText">{{item.name}}</text>
                         </view>
                         <view>
-                            <text space="ensp">{{item.frequency}} | {{item.takeTime}}</text>
+                            <text space="ensp" style="font-size: small;">每天{{item.dayFre}}次|{{item.time}}</text>
                         </view>
                     </view>
-                    <view class="checkbox">
-                        <checkbox value="{{item.takeTime}}" checked="{{item.checked}}" bindtap="checkboxChange"/>
-                    </view>   
+                    <view wx:if="{{item.checked==1}}" class="medicineDiscription" style="color: gray;">
+                        <view class="medicineSingle">
+                            <text class="mediumText" space="ensp">药物 </text>
+                            <text class="mediumText">{{item.name}}</text>
+                        </view>
+                        <view>
+                            <text space="ensp" style="font-size: small;">每天{{item.dayFre}}次|{{item.time}}</text>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.checked==0}}" class="checkbox">
+                        <!-- <checkbox value="{{item.name}}" model:checked="{{item.checked}}"/> -->
+                        <!-- <button size="mini" bindtap="drugTaken" model:value="{{item.checked}}"><text style="font-size: small;">服用</text></button>
+                         -->
+                         <button size="mini" bindtap="drugTaken" data-bean="{{item}}"><text style="font-size: small;">服用</text></button>
+                        <button type="warn" size="mini" wx:if="{{edit == 1}}"><text style="font-size: small;">删除</text></button>
+                    </view>
+                    <view wx:if="{{item.checked==1}}" class="checkbox" style="color: gray;">
+                        <button size="mini" bindtap="drugTaken" data-bean="{{item}}"><text style="font-size: small;">已服用</text></button>
+                        <button type="warn" size="mini" wx:if="{{edit == 1}}"><text style="font-size: small;">删除</text></button>
+                    </view>
                 </view>
             </label>
         </view>
-        <view class="newDrug">
+        <!-- </checkbox-group> -->
+
+        <view wx:if="{{edit==0}}" class="editDrug" bindtap="editDrugs">
             <button>编辑药物</button>
         </view>
+
+        <view wx:if="{{edit==1}}" class="newDrug" bindtap="newDrugs">
+            <button>新增药物</button>
+        </view>
+
+
     </view>
 </view>

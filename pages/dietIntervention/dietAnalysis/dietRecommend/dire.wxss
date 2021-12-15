@@ -8,3 +8,46 @@
 .dietSelector button{
     font-size: small;
 }
+
+.dietRecommendContainer{
+    margin: 50rpx;
+    background-color: #e4e4e4;
+}
+
+.dietRecommender{
+    margin: 50rpx;
+    background-color: white;
+    border-radius: 20rpx;
+}
+
+.mediumText{
+    font-size: x-small;
+    font-weight: 500;
+    margin: 5rpx;
+    color: gray;
+}
+
+.largeText{
+    font-size: large;
+    font-weight: 700;
+}
+
+.foodSingle{
+    margin: 20rpx;
+    display: flex;
+    flex-direction: row;
+}
+
+.dietRecommendContainerTitle{
+    margin: 20rpx;
+}
+
+.foodSingleDescription{
+    flex: 1;
+}
+
+.nutritionConsult{
+    text-align: right;
+    position: relative;
+    align-items: center;
+}

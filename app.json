@@ -14,7 +14,8 @@
     "pages/personalHomepage/peho",
     "pages/register/register",
     "pages/interventionPlan/plan",
-    "pages/bloodSugarMonitor/plan/plan"
+    "pages/bloodSugarMonitor/plan/plan",
+    "pages/medicalManagement/memaplan/plan"
   ],
   "window": {
     "backgroundTextStyle": "dark",
