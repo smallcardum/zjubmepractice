@@ -20,9 +20,9 @@
                             <view class="foodName"><text class="largeText">{{food.name}}</text></view>
                             <view class="appraisal"><text class="mediumText">{{rcmdword[random[index][0]]}},{{rcmdword[random[index][1]]}},{{rcmdword[random[index][2]]}}</text></view>
                             <view class="nutritionContent" hidden="{{food.hidden}}">
-                                <view>配料：</view>
+                                <view style="color: green">配料：</view>
                                 <label wx:for="{{food.ingredients}}" wx:key="{{item.ingredientsName}}">
-                                    <view>{{item.ingredientsName}}</view>
+                                    <view class="ingredientsText">{{item.ingredientsName}}：{{item.weight}}</view>
                                 
                                 </label>
                             </view>

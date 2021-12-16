@@ -51,3 +51,8 @@
     position: relative;
     align-items: center;
 }
+
+.ingredientsText{
+    font-size: small;
+    color:darkslategray;
+}

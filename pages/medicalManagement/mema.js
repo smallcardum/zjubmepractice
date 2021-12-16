@@ -1,6 +1,8 @@
 // pages/medicalManagement/mema.js
 import { userInfoFindUrl } from "../../utils/config"
 import { mdcnPlanFindUrl } from "../../utils/util"
+import { mdcnRecordFindUrl } from "../../utils/util"
+var util = require('../../utils/util')
 
 Page({
     /**
@@ -29,17 +31,15 @@ Page({
           },
           success(res) {
             console.log(res)
-            console.log("haha")
+            // console.log("haha")
             let data = res.data
             that.setData({
                 items: data
             })
             
+            let time = util.formatTime2(new Date())
             for(var i = 0; i < that.data.items.length; i++){
                 var str = 'items[' + i + '].time'
-                // that.setData({
-                //     [str] : '爆炸'
-                // })
                 switch(that.data.items[i].time){
                     case 0:
                         that.setData({
@@ -72,10 +72,32 @@ Page({
                         })
                         break    
                 }
+                let planId = that.data.items[i].id
+                let did = 0
+                wx.request({
+                    url: mdcnRecordFindUrl,
+                    method: "POST",
+                    data: {
+                        planId: planId,
+                        date: time
+                    },
+                    header: {
+                        'content-type': 'application/texts' // 默认值
+                    },
+                    success(res){
+                        let rcddata = res.data
+                        if(rcddata.length==0){
+                            console.log(i + "haha")
+                        }else{
+                            console.log(i + rcddata[0].did)
+                            did = rcddata[0].did
+                        }
+                    }
+                })
                 var str = 'items[' + i + '].checked'
-                var strId = 'items[' + i + '].id'
+                var strId = 'items[' + i + '].planid'
                 that.setData({
-                    [str] : 0,
+                    [str] : did,
                     [strId] : i
                 })
             }
@@ -86,7 +108,7 @@ Page({
     drugTaken(e) {
         // console.log(e.currentTarget.dataset)
         var checked = e.currentTarget.dataset.bean.checked
-        var id = e.currentTarget.dataset.bean.id
+        var id = e.currentTarget.dataset.bean.planid
         let that = this
         var str = 'items[' + id + '].checked'
         switch(checked){
@@ -100,7 +122,13 @@ Page({
         that.setData({
             [str] : checked
         })
+        that.updateRecord(e, checked)
+    },
 
+    updateRecord(e, checked){
+        let planId = e.currentTarget.dataset.bean.id
+        console.log(planId)
+        let bean = e.currentTarget.dataset.bean
     },
 
     editDrugs(e) {
@@ -108,8 +136,18 @@ Page({
         that.setData({
             edit: 1
         })
-        console.log(that.edit)
-        
+        // console.log(that.edit)
+    },
+
+    editFinish(e) {
+        let that = this
+        that.setData({
+            edit: 0
+        })
+    },
+
+    deleteDrug(e){
+
     },
 
 

@@ -34,19 +34,21 @@
                     </view>
                     <view wx:if="{{item.checked==1}}" class="checkbox" style="color: gray;">
                         <button size="mini" bindtap="drugTaken" data-bean="{{item}}"><text style="font-size: small;">已服用</text></button>
-                        <button type="warn" size="mini" wx:if="{{edit == 1}}"><text style="font-size: small;">删除</text></button>
+                        <button type="warn" size="mini" wx:if="{{edit == 1}}" bindtap="deleteDrug" data-bean="{{item}}"><text style="font-size: small;">删除</text></button>
                     </view>
                 </view>
             </label>
         </view>
         <!-- </checkbox-group> -->
 
-        <view wx:if="{{edit==0}}" class="editDrug" bindtap="editDrugs">
-            <button>编辑药物</button>
+        <view wx:if="{{edit==0}}" class="editDrug">
+            <button bindtap="editDrugs">编辑药物</button>
+            <button bindtap="uploadRecord">确认服用情况</button>
         </view>
 
-        <view wx:if="{{edit==1}}" class="newDrug" bindtap="newDrugs">
-            <button>新增药物</button>
+        <view wx:if="{{edit==1}}" class="newDrug">
+            <button bindtap="newDrugs">新增药物</button>
+            <button bindtap="editFinish">完成编辑</button>
         </view>
 
 

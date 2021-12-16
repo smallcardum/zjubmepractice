@@ -47,3 +47,7 @@
     position: relative;
     align-items: center;
 }
+
+button{
+    margin: 5rpx 0 5rpx 0;
+}

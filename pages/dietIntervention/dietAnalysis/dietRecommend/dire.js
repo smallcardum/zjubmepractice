@@ -69,6 +69,7 @@ Page({
                     // console.log(rcmd[i].dishName)
                     if(names.indexOf(rcmd[i].dishName) == -1){
                         // console.log("haha")
+                        var newRcmdId = newRcmd.length
                         newRcmd.push({
                             name: rcmd[i].dishName,
                             ingredients:[{
@@ -76,10 +77,11 @@ Page({
                                 weight: rcmd[i].weight
                             }],
                             hidden: 1,
-                            rcmdId: i
+                            rcmdId: newRcmd.length
                         })
                         names.push(rcmd[i].dishName)
                     }else{
+                        // console.log(names.indexOf(rcmd[i].dishName)+rcmd[i].dishName+rcmd[i].name+rcmd[i].weight)
                         newRcmd[names.indexOf(rcmd[i].dishName)].ingredients.push({
                             ingredientsName: rcmd[i].name,
                             weight: rcmd[i].weight
@@ -133,11 +135,12 @@ Page({
     },
 
     showNutrition(e){
-        console.log(e.currentTarget.dataset)
+        // console.log(e.currentTarget.dataset)
         let that = this
         var hidden = e.currentTarget.dataset.bean.hidden
-        console.log(that.data)
+        // console.log(that.data)
         var id = e.currentTarget.dataset.bean.rcmdId
+        
 
         var str = 'showRecommend[' + id + '].hidden'
         switch(hidden){
