@@ -12,10 +12,14 @@ Page({
     },
 
     getUserInfo() {
+        
         let that = this
         let id = {
-            userId: Number(this.data.id),
+            // userId: Number(this.data.id),
+            userId: this.data.id
         }
+        console.log("mdcnPlanFindUrl = " + mdcnPlanFindUrl)
+        
         wx.request({
           url: mdcnPlanFindUrl,
           method: "POST",
@@ -24,10 +28,13 @@ Page({
             'content-type': 'application/texts' // 默认值
           },
           success(res) {
+            console.log(res)
+            console.log("haha")
             let data = res.data
             that.setData({
                 items: data
             })
+            
             for(var i = 0; i < that.data.items.length; i++){
                 var str = 'items[' + i + '].time'
                 // that.setData({
@@ -102,6 +109,7 @@ Page({
             edit: 1
         })
         console.log(that.edit)
+        
     },
 
 
@@ -113,7 +121,9 @@ Page({
         this.setData({
             id,
         })
-        this.getUserInfo();
+
+        this.getUserInfo()
+
     },
 
     /**

@@ -1,10 +1,23 @@
 <!--pages/exerciseIntervention/exint.wxml-->
 <view class="container">
-    <view class="title">运动管理</view>
-    <view class="dateTime">日期</view>
-    <view class="exintContainer">
-        <view class="exerciseContainer">
-            
-        </view>
+    <view style="font-size: x-large; font-weight: 700;text-align: center;">运动管理</view>
+    <view class="dateTime">{{time}}：你的今日份运动推荐</view>
+    <view class="line"></view>
+    <text decode='true' class="subtitle">&emsp;&emsp;&ensp;运动内容&emsp;&emsp;&emsp;&emsp;&ensp;运动项目</text>
+    <view class="dintContainer">
+        <label wx:for="{{items}}" wx:key="index">
+            <view class="dietInterContainer">
+                <view class="dietName">
+                    <view class="sportKind">{{item.sportKind}} </view>
+                    <view class="sportItem">{{item.sportItem}}</view>
+                </view>
+                <view class="line"></view>
+                <view class="meal"></view>
+            </view>
+        </label>
     </view>
+<view style="display: flex; flex-direction: row;">
+    <button type="primary" bindtap="sportDone" style="margin-left: 5%; width: 300rpx;" >今日运动打卡</button>
+    <button type="primary" bindtap="sportHistory" style="margin-right: 5%; width: 300rpx;">查看打卡纪录</button>
+</view>
 </view>

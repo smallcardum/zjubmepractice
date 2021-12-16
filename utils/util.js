@@ -63,6 +63,7 @@ const formatTime2 = date => {
 module.exports = {
   formatTime,
   formatTime2,
+  formatTime3,
   foodAnalAddUrl,
   foodAnalDeleteUrl,
   foodAnalFindUrl,
@@ -87,4 +88,13 @@ module.exports = {
   mdcnRecordDeleteUrl,
   mdcnRecordFindUrl,
   mdcnRecordUpdateUrl
+}
+
+const formatTime3 = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const weekday = date.getDay()
+
+  return weekday
 }

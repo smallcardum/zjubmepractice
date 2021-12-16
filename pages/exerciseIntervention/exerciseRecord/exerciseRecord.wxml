@@ -1,0 +1,13 @@
+<view class="itemTitle">
+    <view>打卡日期</view>
+    <view>打卡结果</view>
+
+</view>
+<view class="line"/>
+    <!-- <sportDone-record wx:for="{{sportDoneList}}" wx:key="index" assessment="{{item}}" /> -->
+<view class="sportDone">
+    <view>{{sportDoneList[0]}}</view>  
+    <text decode='true'>&emsp;&emsp;&emsp;&emsp;&ensp;</text>
+    <view>{{sportDoneList[1]}}</view>
+</view>
+<view wx:if="{{sportDoneList.length==0}}" class="no_record">暂无数据</view>

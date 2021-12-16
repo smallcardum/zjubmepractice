@@ -1,0 +1,83 @@
+/* pages/doctorPatientCommuniation1/communicate-list/communicate-list.wxss *//* pages/communicate/communicate-list/communicate-list.wxss */
+.search-input{
+    width: 90%;
+    margin: 10px auto;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #E5E5E5;
+  }
+  
+  .nav-person-item{
+    height: 60px;
+  }
+  .list-part{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .avatar{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .list-avatar{
+    height: 40px;
+    width: 40px;
+    border: 1px solid #E5E5E5;
+    border-radius: 40px;
+  }
+  .newMag{
+    height:10px;
+    width:10px;
+    border-radius:10px;
+    background-color:red;
+    position:relative;
+    top:-15px;
+    left:-10px;
+  }
+  .list-part-right{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+  
+  
+  }
+  .communicate-title{
+    height: 55%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .name{
+    font-size: 16px;
+  }
+  .time{
+    color: rgb(161, 161, 161);
+    font-size: 13px;
+  }
+  .communicate-detail{
+    height: 45%;
+    color: #8A8A8A;
+    font-size: 14px;
+    /* line-height: 20px; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .no_chat {
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.4;
+  }
