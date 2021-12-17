@@ -2,6 +2,8 @@
 import { userInfoFindUrl } from "../../utils/config"
 import { mdcnPlanFindUrl } from "../../utils/util"
 import { mdcnRecordFindUrl } from "../../utils/util"
+import { mdcnRecordAddUrl } from "../../utils/util"
+import { mdcnRecordUpdateUrl } from "../../utils/util"
 var util = require('../../utils/util')
 
 Page({
@@ -16,12 +18,13 @@ Page({
     getUserInfo() {
         
         let that = this
+        let userId = this.data.id
         let id = {
             // userId: Number(this.data.id),
             userId: this.data.id
         }
         console.log("mdcnPlanFindUrl = " + mdcnPlanFindUrl)
-        
+        let planIdList = []
         wx.request({
           url: mdcnPlanFindUrl,
           method: "POST",
@@ -30,7 +33,7 @@ Page({
             'content-type': 'application/texts' // 默认值
           },
           success(res) {
-            console.log(res)
+            // console.log(res)
             // console.log("haha")
             let data = res.data
             that.setData({
@@ -38,6 +41,7 @@ Page({
             })
             
             let time = util.formatTime2(new Date())
+            const map = new Map()
             for(var i = 0; i < that.data.items.length; i++){
                 var str = 'items[' + i + '].time'
                 switch(that.data.items[i].time){
@@ -74,6 +78,12 @@ Page({
                 }
                 let planId = that.data.items[i].id
                 let did = 0
+                planIdList.push(planId)
+                
+                var strId = 'items[' + i + '].planid'
+                that.setData({
+                    [strId] : i
+                })
                 wx.request({
                     url: mdcnRecordFindUrl,
                     method: "POST",
@@ -86,37 +96,102 @@ Page({
                     },
                     success(res){
                         let rcddata = res.data
+                        
                         if(rcddata.length==0){
-                            console.log(i + "haha")
+                            // console.log(i + "haha")
+                            map.set(planId, 0)
+                            wx.request({
+                                url: mdcnRecordAddUrl,
+                                method: "POST",
+                                data: {
+                                    userId: userId,
+                                    planId: planId,
+                                    date: time,
+                                    did: 0
+                                },
+                                header: {
+                                    'content-type': 'application/texts' // 默认值
+                                },
+                            })
                         }else{
-                            console.log(i + rcddata[0].did)
-                            did = rcddata[0].did
+                            // console.log(rcddata[0].did)
+                            map.set(planId, rcddata[0].did)
+                        }
+                        if(map.size==that.data.items.length){
+                            for(let i = 0; i < that.data.items.length; i++){
+                                var str = 'items[' + i + '].checked'
+                                let planId = that.data.items[i].id
+                                // console.log("planId=" + planId)
+                                // console.log(map.get(planId))
+                                // console.log(map)
+                                that.setData({
+                                    [str]: map.get(planId)
+                                })
+                            }
                         }
                     }
                 })
-                var str = 'items[' + i + '].checked'
-                var strId = 'items[' + i + '].planid'
-                that.setData({
-                    [str] : did,
-                    [strId] : i
-                })
             }
+            console.log(planIdList)
+            console.log(map)
+            // map.set('name','张三')
           }
         })
     },
 
     drugTaken(e) {
-        // console.log(e.currentTarget.dataset)
-        var checked = e.currentTarget.dataset.bean.checked
-        var id = e.currentTarget.dataset.bean.planid
+        console.log(e.currentTarget.dataset)
+        let checked = e.currentTarget.dataset.bean.checked
+        let planid = e.currentTarget.dataset.bean.planid
+        let id = e.currentTarget.dataset.bean.id
         let that = this
-        var str = 'items[' + id + '].checked'
+        let str = 'items[' + planid + '].checked'
+        let time = util.formatTime2(new Date())
         switch(checked){
             case 0:
                 checked = 1
+                console.log("planid="+id)
+                wx.request({
+                    url: mdcnRecordUpdateUrl,
+                    method: "POST",
+                    data: {
+                        old: {
+                            planId: id,
+                            date: time,
+                        },
+                        new: {
+                            userId: that.data.id,
+                            planId: id,
+                            date: time,
+                            did: 1
+                        }
+                    },
+                    header: {
+                        'content-type': 'application/texts' // 默认值
+                    },
+                })
                 break
             case 1:
                 checked = 0
+                wx.request({
+                    url: mdcnRecordUpdateUrl,
+                    method: "POST",
+                    data: {
+                        old: {
+                            planId: id,
+                            date: time,
+                        },
+                        new: {
+                            userId: that.data.id,
+                            planId: id,
+                            date: time,
+                            did: 0
+                        }
+                    },
+                    header: {
+                        'content-type': 'application/texts' // 默认值
+                    },
+                })
                 break
         }
         that.setData({
@@ -148,6 +223,10 @@ Page({
 
     deleteDrug(e){
 
+    },
+
+    newDrugs(e){
+        
     },
 
 

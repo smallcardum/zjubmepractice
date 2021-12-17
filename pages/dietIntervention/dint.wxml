@@ -26,6 +26,7 @@
                     <view class="singleMeal">
                         <view class="mealName"><text space="emsp">牛奶 </text></view>
                         <view class="mealAmount">1盆</view>
+                        <button type="warn" size="mini" class="dietButton">删除</button>
                     </view>
                 </view>
             </view>

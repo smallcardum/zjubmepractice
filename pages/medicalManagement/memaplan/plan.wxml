@@ -1,2 +1,26 @@
 <!--pages/medicalManagement/memaplan/plan.wxml-->
-<text>pages/medicalManagement/memaplan/plan.wxml</text>
+<view class="container">
+    <view class="title">新增药物</view>
+    <form bindsubmit="formSubmit" bindreset="formReset" class="editContainer">
+        <view class="newDrug">
+            <view class="left mediumText">药物名称：</view>
+            <input type="text" name="name" placeholder="请输入药物名称" class="right"/>      
+        </view>
+        <view class="newDrug">
+            <view class="left mediumText">药物剂量：</view>
+            <input type="text" name="dasage" placeholder='请输入剂量如:"1片"' class="right"/>  
+        </view>
+        <view class="newDrug">
+            <view class="left mediumText">每周服用次数：</view>
+            <input type="number" name="time" class="right"/>
+        </view>
+        <view class="drugFrequency">
+            <view class="mediumText">每日服用频次：</view>
+            <checkbox-group name="checkbox">
+                <label for="{{frequency}}">
+                    <checkbox>{{frequency[index]}}</checkbox>
+                </label>
+            </checkbox-group>
+        </view>
+    </form>
+</view>

@@ -1,1 +1,44 @@
 /* pages/medicalManagement/memaplan/plan.wxss */
+
+.editContainer{
+    background-color: #e4e4e4;
+    margin: 50rpx;
+    padding: 10rpx;
+}
+
+.newDrug{
+    display: flex;
+    flex-direction: row;
+    margin: 20rpx;
+    /* padding: 10rpx; */
+    /* padding: 20rpx; */
+    /* background-color: white; */
+    border-radius: 10rpx;
+}
+
+.left{
+    flex: 1;
+    /* width: 200rpx; */
+    /* background-color: green; */
+}
+
+.drugFrequency{
+    margin: 20rpx;
+    /* padding: 20rpx; */
+    /* background-color: #e4e4e4; */
+    border-radius: 10rpx;
+    /* background-color: white; */
+}
+
+.mediumText{
+    font-size: medium;
+    font-weight: 700;
+}
+
+.right{
+    text-align: right;
+    position: relative;
+    align-items: center;
+    background-color: white;
+    width: 330rpx;
+}

@@ -5,7 +5,12 @@ Page({
      * 页面的初始数据
      */
     data: {
-
+        name: "",
+        dasage: "",
+        time: [],
+        weekFre: 0,
+        dayFre: 0,
+        frequency: ["早饭空腹","早饭饭后","午饭空腹","午饭饭后","晚饭空腹","晚饭饭后"]
     },
 
     /**
