@@ -6,21 +6,44 @@
             <view class="left mediumText">药物名称：</view>
             <input type="text" name="name" placeholder="请输入药物名称" class="right"/>      
         </view>
+        <view class="error-info" wx:if="{{nameError==true}}">请输入药物名称</view>
         <view class="newDrug">
             <view class="left mediumText">药物剂量：</view>
             <input type="text" name="dasage" placeholder='请输入剂量如:"1片"' class="right"/>  
         </view>
+        <view class="error-info" wx:if="{{dasageError==true}}">请输入药物剂量</view>
         <view class="newDrug">
             <view class="left mediumText">每周服用次数：</view>
-            <input type="number" name="time" class="right"/>
+            <input type="number" name="weekFre" class="right"/>
         </view>
+        <view class="error-info" wx:if="{{weekFreError==true}}">请输入每周服用次数</view>
         <view class="drugFrequency">
             <view class="mediumText">每日服用频次：</view>
             <checkbox-group name="checkbox">
-                <label for="{{frequency}}">
-                    <checkbox>{{frequency[index]}}</checkbox>
+                <label>
+                    <checkbox value="0">{{frequency[0].name}}</checkbox>
+                </label>
+                <label>
+                    <checkbox value="1">{{frequency[1].name}}</checkbox>
+                </label>
+                <label>
+                    <checkbox value="2">{{frequency[2].name}}</checkbox>
+                </label>
+                <label>
+                    <checkbox value="3">{{frequency[3].name}}</checkbox>
+                </label>
+                <label>
+                    <checkbox value="4">{{frequency[4].name}}</checkbox>
+                </label>
+                <label>
+                    <checkbox value="5">{{frequency[5].name}}</checkbox>
                 </label>
             </checkbox-group>
+        </view>
+        <view class="error-info" wx:if="{{frequencyError==true}}">请选择每日服用频次</view>
+        <view class="btn-area">
+            <button formType="submit">新增药物</button>
+            <button formType="reset">重新填写</button>
         </view>
     </form>
 </view>

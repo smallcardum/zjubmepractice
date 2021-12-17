@@ -42,3 +42,9 @@
     background-color: white;
     width: 330rpx;
 }
+
+.error-info {
+    text-align: center;
+    font-size: 12px;
+    color: red;
+  }
