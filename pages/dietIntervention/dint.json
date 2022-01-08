@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "slide": "../../components/slide/slide"
+  }
 }

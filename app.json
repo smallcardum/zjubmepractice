@@ -17,7 +17,11 @@
     "pages/bloodSugarMonitor/plan/plan",
     "pages/medicalManagement/memaplan/plan",
     "pages/doctorPatientCommuniation/communicate-list/communicate-list",
-    "pages/doctorPatientCommuniation/communicate-chat/communicate-chat"
+    "pages/doctorPatientCommuniation/communicate-chat/communicate-chat",
+    "pages/dietIntervention/newDiet/newBreakfast",
+    "pages/dietIntervention/newDiet/newLunch",
+    "pages/dietIntervention/newDiet/newDinner",
+    "pages/dietIntervention/newDiet/newAddMeal"
   ],
   "window": {
     "backgroundTextStyle": "dark",

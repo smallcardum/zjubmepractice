@@ -1,0 +1,50 @@
+<!--pages/dietIntervention/newDiet/newAddMeal.wxml-->
+<text>pages/dietIntervention/newDiet/newAddMeal.wxml</text>
+<view class="top">
+  <view class="search">
+    <input class="weui-input" placeholder="请输入食物名称" bindinput="inputWord" value="{{word}}" confirm-type="search" bindconfirm="searchFood"/>
+    <image src="/image/search.png" mode="aspectFit" bindtap="searchFood"></image>
+  </view>
+  <view class="bar">
+    <view class="{{selected=='1' ? 'selected' : ''}}" bindtap="gotoResult">结果</view>
+    <view class="second {{selected=='2' ? 'selected' : ''}}" bindtap="gotoCollect">收藏</view>
+    <view class="{{selected=='3' ? 'selected' : ''}}" bindtap="gotoHistory">历史</view>
+  </view>
+</view>
+<scroll-view class="result" wx:if="{{selected=='1'}}" scroll-y="true">
+  <block wx:for="{{foodList}}" wx:for-item="food" wx:key="foodNo" >
+    <view bindtap="selectOne" data-food="{{food}}" class="item"  >
+      <image src="/image/dish.png" mode="aspectFit"/>
+      <view style="margin-left:40rpx; width: 70%;">{{food.name}}</view>
+      <!-- space-between 也删除了
+      <view style="color:#b0b3b0; font-size: small; width: 20%;">100g</view>
+      <view style=" font-size: small; width: 20%;">1个</view> -->
+    </view>
+  </block>
+</scroll-view>
+
+<view wx:if="{{selected=='2'}}">
+</view>
+
+<view wx:if="{{selected=='3'}}">
+</view>
+
+<view class="gram" wx:if="{{gram}}">
+  <view class="gram_name">
+    <view class="gram_name_name">{{food.name}}</view>
+    <view class="gram_name_unit">一<text>{{unit}}</text>可食部分约为\n<text>{{unitGram}}</text>克</view>
+  </view>
+  <view class="gram_choose">
+    <input bindchange="gramChange" type="digit" placeholder="滑动右侧选择度量单位" value="{{value}}"/>
+    <picker-view indicator-style="height: 50px;" style="width: 30%; height: 100px; margin-right: 10%;" value="{{valueUnit}}" bindchange="bindChangeUnit">
+      <picker-view-column>
+        <view wx:for="{{units}}" style="line-height: 50px; text-align: center;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+
+  <view class="gram_confirm">
+    <button bindtap="cancelGram" style="background-color: #A9A9A9;">取消</button>
+    <button bindtap="confirmGram">确认</button>
+  </view>
+</view>

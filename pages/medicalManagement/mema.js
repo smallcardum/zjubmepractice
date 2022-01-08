@@ -4,6 +4,7 @@ import { mdcnPlanFindUrl } from "../../utils/util"
 import { mdcnRecordFindUrl } from "../../utils/util"
 import { mdcnRecordAddUrl } from "../../utils/util"
 import { mdcnRecordUpdateUrl } from "../../utils/util"
+import { mdcnPlanDeleteUrl } from "../../utils/util"
 var util = require('../../utils/util')
 
 Page({
@@ -16,7 +17,6 @@ Page({
     },
 
     getUserInfo() {
-        
         let that = this
         let userId = this.data.id
         let id = {
@@ -132,7 +132,7 @@ Page({
                     }
                 })
             }
-            console.log(planIdList)
+            console.log("planIdList="+planIdList)
             console.log(map)
             // map.set('name','张三')
           }
@@ -222,11 +222,35 @@ Page({
     },
 
     deleteDrug(e){
-
-    },
-
-    newDrugs(e){
-        
+        console.log(e.currentTarget.dataset.bean)
+        console.log('haha')
+        let userId = this.data.id
+        let that = this
+        wx.showModal({
+          title: '提示',
+          content: '你确定要删除这个药物吗？',
+          success(res){
+            if(res.confirm){
+                wx.request({
+                    url: mdcnPlanDeleteUrl,
+                    method: "POST",
+                    data: {
+                        userId: userId,
+                        id: e.currentTarget.dataset.bean.id
+                    },
+                    header: {
+                        'content-type': 'application/texts' // 默认值
+                    },
+                    success(res){
+                        wx.showToast({
+                          title: '删除成功！',
+                        }),
+                        that.onLoad()
+                    }
+                })
+            }
+          }
+        })
     },
 
 

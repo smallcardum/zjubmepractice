@@ -38,18 +38,84 @@
 .dietName{
     margin-bottom: 20rpx;
     display: flex;
+    justify-content: space-between;
 }
 
 .dietButton{
     margin-right: 5rpx;
+    font-weight: 700;
+}
+.dietButton text{
+    color: green;
 }
 
 .singleMeal{
-    display: flex;
+    /* display: flex; */
 }
 
 .mealAmount{
     color: grey;
-    font-size: medium;
-    
+    font-size: small;
+    font-weight: 400;
+}
+
+.mealName{
+    font-weight: 500;
+}
+
+/* .up{
+    animation: up .7s;
+}
+.down{
+    animation: down 1s;
+}
+@keyframes up
+{
+    0% { transform: translateY(550rpx); }
+    100% { transform: translateY(0); }
+}
+@keyframes down
+{
+    0% { transform: translateY(0); }
+    100% { transform: translateY(550rpx); }
+} */
+
+/* .mealEdit{
+    margin-bottom: 20rpx;
+}
+
+.mealEdit view{
+    padding: 26rpx 0;
+    background: #ffffff;
+} */
+
+
+.Mcancel{
+    /* background: #fff; */
+    padding: 26rpx 0;
+  }
+
+.bottom-position{
+    text-align: center;
+}
+
+.editHead{
+    display: flex;
+    justify-content: space-between;
+}
+
+.close{
+    text-align: center;
+    margin-left: 50rpx;
+    font-size: x-large;
+}
+
+.editTitle{
+    margin-top: 20rpx;
+}
+
+.delete{
+    margin-top: 20rpx;
+    color: red;
+    margin-right: 50rpx;
 }

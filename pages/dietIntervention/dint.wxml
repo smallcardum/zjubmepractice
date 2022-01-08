@@ -9,14 +9,15 @@
     </view>
     
     <view class="dintContainer">
-        <label wx:for="{{meal}}" wx:key="{{item.mealName}}">
+        <label wx:for="{{meal}}" wx:key="mealName" wx:for-item="meal">
             <view class="dietInterContainer">
                 <view class="dietName">
-                    <text class="mediumText">{{item.mealName}}</text>
-                    <button size="mini" class="dietButton">添加{{item.mealName}}</button>
+                    <text class="mediumText">{{meal.mealName}}</text>
+                    <view class="dietButton" data-bean="{{meal}}" bindtap="newMeal"><text>添加{{meal.mealName}}</text></view>
+                    <!-- <button size="mini" class="dietButton" data-bean="{{meal}}" bindtap="newMeal">添加{{meal.mealName}}</button> -->
                 </view>
-                <view class="line"></view>
-                <view class="meal">
+                
+                <!-- <view class="meal">
                     <view class="singleMeal">
                         <view class="mealName"><text space="emsp">稀饭 </text></view>
                         <view class="mealAmount">1杯</view>
@@ -28,6 +29,39 @@
                         <view class="mealAmount">1盆</view>
                         <button type="warn" size="mini" class="dietButton">删除</button>
                     </view>
+                </view> -->
+                <!-- <text>{{meal.meals[0].foodName}}</text> -->
+                <view class="meal" wx:for="{{meal.meals}}" wx:for-item="food" wx:key="no">
+                <!-- <view class="meal" wx:for="{{item.meals}}"> -->
+                    <!-- <text>{{food}}</text> -->
+                    <view class="line"></view>
+                    <view class="mealText">
+                        <view class="singleMeal" bindtap="editMeal" data-bean="{{food}}">
+                            <view class="mealName"><text space="emsp">{{food.foodName}} {{food.weight}}克</text></view>
+                            <!-- <view class="mealAmount"><text space="emsp">{{food.weight}}克</text></view> -->
+                        </view>
+                    </view>
+                    <view class="modal" hidden="{{food.hidden}}">
+                        <view class="modal-cancel" bindtap="hideModal" data-bean="{{food}}" hidden="{{food.hidden}}"></view>
+                        <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
+                            <view class="editHead">
+                                <view class="close" bindtap="hideModal" data-bean="{{food}}"><text>×</text></view>
+                                <view class="editTitle">{{food.foodName}}（单位：克）</view>
+                                <view class="delete" bindtap="deleteMeal">删除</view>
+                            </view>
+                            <view class="Medit">
+                                <slide id="rule" min="0" max="1000" def="{{food.weight}}" bind:slide="slideTrigger" data-bean="{{food}}"></slide>
+                            </view>
+                            <view class="Mconfirm" bindtap='mConfirm' data-bean="{{food}}">
+                                <text>确认</text>
+                            </view>
+                            <view class='Mcancel' bindtap='mCancel' data-bean="{{food}}">
+                                <text>取消</text>
+                            </view>
+                        </view>
+                        <!-- <view class="orderBox up">哈哈</view> -->
+                    </view>
+
                 </view>
             </view>
         </label>
