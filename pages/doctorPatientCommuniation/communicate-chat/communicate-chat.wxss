@@ -1,1 +1,93 @@
 /* pages/doctorPatientCommuniation1/communicate-chat/communicate-chat.wxss */
+.container{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.chat-history{
+  /*height: calc(100% - 90rpx);*/
+  height: 1200rpx;
+}
+.msg{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.msg-content{
+  display: flex;
+  flex-direction: row;
+}
+
+.avatar{
+  width: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.msg-avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+}
+
+.content{
+  display: flex;
+  flex-direction: column;
+  padding: 15rpx 0;
+}
+
+.time{
+  height: 30rpx;
+  line-height: 30rpx;
+  color: #c7c6c6;
+  font-size: smaller;
+}
+.text{
+  max-width: 450rpx;
+  margin: 5rpx 0;
+}
+.text-content{
+  border-radius: 10rpx;
+  padding: 20rpx;
+  word-break: break-all;
+  line-height: 40rpx;
+  display: inline-block;
+
+}
+.flag{
+  height: 30rpx;
+  color: #c7c6c6;
+  font-size: smaller;
+  line-height: 30rpx;
+}
+.user-operation{
+  height: 90rpx;
+  background-color: rgba(236, 236, 236, 0.897);
+  padding: 15rpx 20rpx;
+  display: flex;
+  align-content: center;
+}
+
+.user-input-content{
+  width: 100%;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-input{
+  width: 90%;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+#msg-area{
+  position: absolute;
+  width: 100%;
+  top: 0;
+  /* transition: top .25s cubic-bezier(0.2,0,0.2,1); */
+}
+
+
+

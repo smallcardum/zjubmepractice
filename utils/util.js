@@ -2,11 +2,14 @@
  * 新接口url
  */
 let env = 'local';
-
+//let env = 'test';
 var baseUrl = '';
 if(env == 'local') {
   baseUrl = 'http://localhost:8080';
-} 
+}  else if (env == 'test') {
+  baseUrl = 'https://exp.zjubiomedit.com/glutest'
+  //baseUrl = 'http://39.100.99.97:8070'
+}
 
 const foodAnalAddUrl = baseUrl + '/foodAnalysis/add'
 const foodAnalFindUrl = baseUrl + '/foodAnalysis/find'

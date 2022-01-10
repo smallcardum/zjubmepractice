@@ -53,10 +53,10 @@
                                 <slide id="rule" min="0" max="1000" def="{{food.weight}}" bind:slide="slideTrigger" data-bean="{{food}}"></slide>
                             </view>
                             <view class="Mconfirm" bindtap='mConfirm' data-bean="{{food}}">
-                                <text>确认</text>
+                                <button>确认</button>
                             </view>
                             <view class='Mcancel' bindtap='mCancel' data-bean="{{food}}">
-                                <text>取消</text>
+                                <button>取消</button>
                             </view>
                         </view>
                         <!-- <view class="orderBox up">哈哈</view> -->
