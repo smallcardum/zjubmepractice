@@ -35,7 +35,7 @@ Page({
             that.setData({
                 userID: phone,
                 sex: data.sex == 1 ? "男" : "女",
-                birthDate: data.birth.slice(0,10),
+                birthDate: that.test(data.birth),
                 height: data.height,
                 weight: data.weight,
                 level: data.level == 0 ? "一般人群" : (data.level == 1 ? "高危人群" : "糖尿病患者"),
@@ -51,11 +51,28 @@ Page({
         })
     },
 
+    exit() {
+      wx.redirectTo({
+        url: '/pages/login/login',
+      })
+    },
+
+    test(date) {
+      //console.log("date = "+date)
+      //var timelagging = 8; // 5 or 6
+      var utc = new Date(date);
+      //console.log("utc = "+utc)
+      //var cdt = new Date(utc.getTime()-((1 * 60 * 60 * 1000) * timelagging));
+      var newDate = formatTime2(utc)
+      //console.log("CDT: "+newDate);
+      return newDate
+    },
+
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let id = wx.getStorageSync('id')
+        let id = wx.getStorageSync('userId')
         this.setData({
             id,
         })

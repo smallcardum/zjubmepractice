@@ -2,7 +2,7 @@
 <view class='container'>
   <view class="list">
     <view class="item">
-      <view>用户ID</view>
+      <view>手机号码</view>
       <view>{{userID}}</view>
     </view>
     <view class="item">
@@ -26,4 +26,5 @@
       <view class="level">{{level}}</view>
     </view>
   </view>
+  <button type="default" style="width: 200rpx; margin: auto; margin-top: 20rpx;" bindtap="exit">退出</button>
 </view>

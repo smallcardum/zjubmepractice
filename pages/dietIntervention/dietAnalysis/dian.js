@@ -1,7 +1,8 @@
 // pages/dietIntervention/dietAnalysis/dian.js
 var util = require('../../../utils/util');
 
-import { analysisGetUrl, foodReDeFindUrl } from "../../../utils/util"
+import { foodReDeFindUrl } from "../../../utils/util"
+import { analysisFindUrl,foodFindUrl } from "../../../utils/config"
 
 // pie
 const  windowWidth =375;
@@ -34,10 +35,15 @@ Page({
     // pie
     canvasW:0.8*windowWidth,
     canvasH:0.67*windowWidth,
-
-    allIntake: [],
+    foodlist: [],
+    allIntake: {protein: {actual: 0}, fat: {actual: 0}, cho: {actual: 0}},
+    energy: "",
+    na: "",
     items: [{title: "谷薯类", value: 0},{title: "肉蛋类", value: 0},{title: "乳类", value: 0},{title: "蔬果类", value: 0}],
     canvasInfo:{},
+    
+    singlelist: [],
+    flag: 0,
 
 
     },
@@ -72,10 +78,13 @@ Page({
                         }
                     });
                 }
-                that.setData({items,})
+                that.setData({items,
+                foodlist: list})
                 console.log("完成getuserinfo 前往getanalysis")
                 that.messureCanvas()
                 that.getAnalysis()
+                console.log("触发前")
+                //if(list.length != 0) {that.getSingleFood()}
             }
         })
     },
@@ -86,18 +95,59 @@ Page({
         let userId = this.data.userId
         let queryTime = this.data.queryTime
         console.log(userId+"---"+queryTime)
-        let da = {userId: userId, datetime: queryTime}
+        let da = {userId: Number(userId), datetime: queryTime}
         wx.request({
-            url: analysisGetUrl,
+            url: analysisFindUrl,
             data: da,
             method: "POST",
             header: {
               'content-type': 'application/texts' // 默认值
             },
             success (res) {
-                console.log("hahahahahahahahaha")
+                if(res.data) {
+                  let allIntake = that.data.allIntake
+                  let energy = Number(res.data.energy).toFixed(1)
+                  let na = Number(res.data.na).toFixed(1)
+                  allIntake.protein.actual = Number(res.data.protein).toFixed(1)
+                  allIntake.cho.actual = Number(res.data.cho).toFixed(1)
+                  allIntake.fat.actual = Number(res.data.fat).toFixed(1)
+                  that.setData({
+                    allIntake,
+                    na,
+                    energy,
+                  })
+                  that.drawPie('canvas')
+                }
             }
           })
+    },
+
+    getSingleFood() {
+      let that = this
+      let x = this.data.flag
+      console.log("在getsinglefood里面")
+      let da = {id: this.data.foodlist[x].foodId, name: ''}
+      let sl = this.data.singlelist
+      wx.request({
+          url: foodFindUrl,
+          data: da,
+          method: "POST",
+          header: {
+            'content-type': 'application/texts' // 默认值
+          },
+          success (res) {
+              sl.push(res.data)
+              that.setData({
+                singlelist: sl,
+                flag: x+1,
+              })
+              console.log("flag="+x)
+              console.log(that.data.singlelist)
+              if(that.data.flag != that.data.foodlist.length) {
+                that.getSingleFood()
+              }
+          }
+        })
     },
 
     
@@ -105,14 +155,14 @@ Page({
     var list //对应的数据集
     var ringData = [0,0,0,0]//圆环上的3个数字和是否是暂无数据，【3】=1
       list = this.data.allIntake
-      let all = Number(list.protein.actual) + Number(list.fat.actual) + Number(list.carbohydrate.actual)
+      let all = Number(list.protein.actual) + Number(list.fat.actual) + Number(list.cho.actual)
       if (all == 0) {
         ringData[0] = 100
         ringData[3] = 1
       } else {
         let d = Number(list.protein.actual)
         let z = Number(list.fat.actual)
-        let t = Number(list.carbohydrate.actual)
+        let t = Number(list.cho.actual)
         ringData[0] = d
         ringData[1] = z
         ringData[2] = t
