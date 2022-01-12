@@ -8,5 +8,4 @@
     <view style="font-weight: bold; margin-bottom: 10rpx;">当前运动干预方案</view>
     <text class="word">{{sports}}</text>
   </view>
-
 </view>
