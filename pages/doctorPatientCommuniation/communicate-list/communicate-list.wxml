@@ -22,6 +22,6 @@
   </scroll-view>
   <view wx:if="{{chatList.length==0}}" class="no_chat">
     <image src="/image/no_chat.png" mode="aspectFit" style="height:300rpx;width:300rpx;" />
-    <view>医生没有给您发消息，请期待</view>
+    <view>医生还没有给您发消息，请期待</view>
   </view>
 </view>

@@ -36,7 +36,7 @@
             "outputPath": ""
         },
         "enableEngineNative": false,
-        "useIsolateContext": true,
+        "useIsolateContext": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
@@ -48,7 +48,7 @@
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.4",
-    "appid": "wx14b39d4e0361f86b",
+    "appid": "wx181ef9e82173cfd7",
     "projectname": "practiceLesson",
     "debugOptions": {
         "hidedInDevtools": []

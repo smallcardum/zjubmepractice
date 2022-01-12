@@ -364,7 +364,7 @@ Page({
       },
       success(res) {
         wx.showToast({
-            title: '添加加餐成功！',
+            title: '添加晚餐成功！',
           }),
           console.log("wuhuhu")
           let pencil=that.pencil

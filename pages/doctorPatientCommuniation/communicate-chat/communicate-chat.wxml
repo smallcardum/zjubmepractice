@@ -1,1 +1,43 @@
-<text>123</text>
+<view class='container'>
+  <scroll-view class='chat-history'>
+    <view id='msg-area' style="top:{{top}}px">
+      <block wx:for='{{chatList}}' wx:key='index'>
+        <view id="msg-{{index}}" class='msg' style="flex-direction:{{item.senderID!=doctorId?'row-reverse':'row'}}">
+          <view class='msg-content' style="flex-direction:{{item.senderID!=doctorId?'row-reverse':'row'}}">
+            <view class='avatar' wx:if="{{item.senderID!=doctorId}}">
+              <image class='msg-avatar' mode="aspectFill" src="/img/head.png"/>
+            </view>
+            <view class='avatar' wx:else>
+              <image class='msg-avatar' mode="aspectFill" src="/img/doctor.png" />
+            </view>
+            <view class='content'>
+              <view class='time' style="text-align:{{item.senderID!=doctorId?'right':'left'}}">
+                {{item.msgDateTime}}
+              </view>
+              <view class='text'>
+                <span class='text-content' style="float:{{item.senderID!=doctorId?'right':'left'}};background-color:{{item.senderID!=doctorId?'rgb(132,240,49)':'#fff'}};">
+                  {{item.msgContent}}
+                </span>
+              </view>
+              <!--
+              <view wx:if='{{item.senderID!=doctorId}}' class='flag' style="text-align:right;">
+                {{item.msgFlag == 1?'已读':'未读'}}
+              </view>
+              <view wx:if='{{!item.senderID!=doctorId}}' class='flag' style="text-align:left;">
+              </view>
+              -->
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- <view id='unReadTag'>未读消息</view> -->
+  </scroll-view>
+  <view class='user-operation' id='user-input'>
+    <view class='user-input-content'>
+      <input class='user-input' confirm-type='send' confirm-hold='{{true}}' cursor-spacing='20' bindinput='userInput' value='{{userInputValue}}' bindconfirm='sendMsg' bindfocus='onFocus' bindblur='onBlur' adjust-position='{{true}}'>
+      </input>
+    </view>
+  </view>
+
+</view>

@@ -74,7 +74,7 @@ Page({
             let list = []
             if(data.length) {
                 data.forEach(e => {
-                    list.push({value: e.value, date: e.date.slice(0,10)})
+                    list.push({value: e.value, date: that.test(e.date)})
                 });
                 let lastValue = data[data.length-1].value
                 that.setData({
@@ -82,9 +82,21 @@ Page({
                     lastValue,
                 })
                 that.drawlinechart()
+                //that.test(data[0].date)
             } 
           }
         })
+    },
+
+    test(date) {
+      //console.log("date = "+date)
+      //var timelagging = 8; // 5 or 6
+      var utc = new Date(date);
+      //console.log("utc = "+utc)
+      //var cdt = new Date(utc.getTime()-((1 * 60 * 60 * 1000) * timelagging));
+      var newDate = formatTime2(utc)
+      //console.log("CDT: "+newDate);
+      return newDate
     },
 
     touchHandler: function (e) {
@@ -121,10 +133,12 @@ Page({
       })
     }
     let target = this.data.target
+    var that = this
     chartsdate.date = glus.map(function (item) {
       chartsdate.glu.push(item.value);
       chartsdate.color.push(item.value > target ? '#FF0000' :'#000000');
-      return item.date.slice(5,10)
+      var date = that.test(item.date)
+      return date.slice(5,10)
     })
     return chartsdate;
   },
