@@ -3,10 +3,14 @@
     <view>打卡结果</view>
 
 </view>
-<view class="line"/>
-    <!-- <sportDone-record wx:for="{{sportDoneList}}" wx:key="index" assessment="{{item}}" /> -->
-<view class="sportDone">
-    <view>{{sportDoneList[0]}}</view>  
+<view class="line" />
+<!-- <sportDone-record wx:for="{{sportDoneList}}" wx:key="index" assessment="{{item}}" /> -->
+<view style="margin-top: 50rpx" class="sportDone" wx:if="{{record==false}}">
+    <view><text>{{sportDoneList[1]}}</text></view>
+</view>
+
+<view style="margin-top: 50rpx" class="sportDone" wx:if="{{record==true}}">
+    <view>{{sportDoneList[0]}}</view>
     <text decode='true'>&emsp;&emsp;&emsp;&emsp;&ensp;</text>
     <view>{{sportDoneList[1]}}</view>
 </view>
