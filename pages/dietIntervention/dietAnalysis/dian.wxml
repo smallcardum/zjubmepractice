@@ -13,7 +13,7 @@
         <view class="analysisContainer">
             <view class="subTitle">营养分布</view>
             <view class="line"></view>
-            <view>营养分析图</view>
+            <canvas canvas-id="canvas" style="width:{{canvasW}}px;height:{{canvasH}}px; margin:7px auto;"></canvas>
         </view>
         <view class="analysisContainer">
             <view class="subTitle">食物种类</view>
