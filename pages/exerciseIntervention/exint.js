@@ -15,7 +15,7 @@ Page({
             {itemId: 'C', sportKind:'',sportItem:'快走/慢跑/散步'},
             {itemId: 'D', sportKind:'',sportItem:'拉伸颈部、背部、腿部等部位'}
           ],
-
+        sportDone: false
     },
     /**
      * 生命周期函数--监听页面加载
@@ -89,9 +89,23 @@ Page({
         // request({url, data}).then(res=>{
         //   if(res.data.code == 0){
         //     navigateBack();
+            // console.log(util.formatTime4(new Date()))
+        console.log(this.data.sportDone)
+        if(!this.data.sportDone){
+            getApp().globalData.clockonTime = util.formatTime4(new Date())
+            this.setData({
+                sportDone: true
+            })
+            // console.log(getApp().globalData.clockonTime)
             wx.showToast({
               title:'打卡成功！'
             });
+        } else {
+            wx.showToast({
+                title:'今天已经打过卡啦，明天再来运动吧',
+                icon: "none"
+            });
+        }
         //   }
         // });
     },

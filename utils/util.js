@@ -71,6 +71,17 @@ const formatTime2 = date => {
   return [year, month, day].map(formatNumber).join('-')
 }
 
+const formatTime4 = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const hour = date.getHours()
+  const minute = date.getMinutes()
+  const second = date.getSeconds()
+
+  return [year, month, day].map(formatNumber).join('-')+' '+[hour, minute, second].map(formatNumber).join(':')
+}
+
 const formatTime3 = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -84,6 +95,7 @@ module.exports = {
   formatTime,
   formatTime2,
   formatTime3,
+  formatTime4,
   foodAnalAddUrl,
   foodAnalDeleteUrl,
   foodAnalFindUrl,

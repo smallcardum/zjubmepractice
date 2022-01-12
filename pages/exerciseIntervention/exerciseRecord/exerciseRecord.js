@@ -5,14 +5,35 @@ Page({
      * 页面的初始数据
      */
     data: {
-        sportDoneList:['2021-11-29 17:33:13','已打卡'],
+        sportDoneList:['',''],
+        time: '',
+        record: false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        let time = getApp().globalData.clockonTime
+        console.log("haha"+time)
+        let str = "sportDoneList[0]"
+        this.setData({
+            [str]: time
+        })
+        if(time == ""){
+            let str2 = "sportDoneList[1]"
+            this.setData({
+                [str2]: "暂无你的运动记录哦，快快开始今天的运动吧！"
+            })
+        } else{
+            let str2 = "sportDoneList[1]"
+            this.setData({
+                [str2]: "已打卡",
+                record: true
+            })
+        }
+        console.log(this.data.sportDoneList)
+        console.log(this.data)
     },
 
     /**

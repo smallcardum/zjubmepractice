@@ -95,7 +95,7 @@ Page({
               'content-type': 'application/texts' // 默认值
             },
             success (res) {
-                
+                console.log("hahahahahahahahaha")
             }
           })
     },
