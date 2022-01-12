@@ -2,6 +2,7 @@
 var util = require('../../utils/util');
 
 import { foodRecordFindUrl } from "../../utils/util"
+import { foodReDeFindUrl } from "../../utils/util"
 
 Page({
 
@@ -32,48 +33,68 @@ Page({
             }
         ],
         animationData: {},
+        hidden: true,
+        nowMealType: 0,
+        nowFoodSortId: 0,
+        tempFood: {},
+        flag: false
     },
 
     slideTrigger: function(e){
         let that = this
-        // console.log("hahaha")
+        console.log("hahahaslideTrigger")
         // console.log(e.currentTarget.dataset.bean)
-        let mealType = e.currentTarget.dataset.bean.mealTypeId.toString()
-        let sortId = e.currentTarget.dataset.bean.sortId.toString()
-        var str = 'meal[' + mealType + '].meals[' + sortId + '].tempValue'
+        // let mealType = e.currentTarget.dataset.bean.mealTypeId.toString()
+        // let sortId = e.currentTarget.dataset.bean.sortId.toString()
+        var str = 'meal[' + that.data.nowMealType + '].meals[' + this.data.nowFoodSortId + '].tempValue'
         // console.log(e.currentTarget.dataset.bean)
-        that.setData({
-            [str]: e.detail.curVal
-        });
+        if(that.data.flag){
+            that.setData({
+                [str]: e.detail.curVal
+            });
+            console.log(that.data)
+        }     
         // console.log('当前选择的值',e.detail.curVal);
     },
 
     mConfirm(e){
+        var queryTime = util.formatTime2(new Date());
         let that = this
         // console.log(e.currentTarget.dataset.bean)
         console.log("mConfirmStart")
-        console.log(e.currentTarget.dataset.bean)
-        let no = e.currentTarget.dataset.bean.no
-        let recordId = e.currentTarget.dataset.bean.recordId
+        // console.log(e.currentTarget.dataset.bean)
+        let id = e.currentTarget.dataset.bean.id
+        // let recordId = e.currentTarget.dataset.bean.recordId
+        // console.log(recordId)
         let foodId = e.currentTarget.dataset.bean.foodId
+        // console.log(foodId)
         let newWeight = e.currentTarget.dataset.bean.tempValue
+        if(newWeight==undefined){
+            newWeight=0
+        }
         let foodName = e.currentTarget.dataset.bean.foodName
         let foodTypeId = e.currentTarget.dataset.bean.foodTypeId
+        let mealType = e.currentTarget.dataset.bean.mealType
         let userId = e.currentTarget.dataset.bean.userId
+        let memo = e.currentTarget.dataset.bean.memo
+        console.log(queryTime)
+        // console.log(memo)
         wx.request({
-          url: util.foodDetailUpdateUrl,
+          url: util.foodReDeUpdateUrl,
           method: "POST",
           data: {
               old: {
-                no: no
+                id: id,
               },
               new: {
-                recordId: recordId,
                 foodId: foodId,
                 weight: newWeight,
                 foodName: foodName,
                 foodTypeId: foodTypeId,
-                userId: userId
+                mealType: mealType,
+                userId: userId,
+                memo: memo,
+                datetime: queryTime,
               },
           },
           header: {
@@ -83,47 +104,65 @@ Page({
               wx.showToast({
                 title: '更改成功！',
               }),
-              that.onLoad()
+              console.log("wuhuhu")
+              wx.navigateTo({
+                url: 'dint',
+              })
           }
         })
     },
 
-    delete(e){
+    deleteMeal(e){
         let that = this
         console.log(e.currentTarget.dataset.bean)
-        let mealType = e.currentTarget.dataset.bean.mealTypeId
+        let mealType = e.currentTarget.dataset.bean.mealType
         let sortId = e.currentTarget.dataset.bean.sortId
-        let no = e.currentTarget.dataset.bean.no
-        let foodId = e.currentTarget.dataset.bean.foodId
-        let newWeight = e.currentTarget
+        let id = e.currentTarget.dataset.bean.id
+        let str = "meal["+mealType+"].meals["+sortId+"]"
+        // let foodId = e.currentTarget.dataset.bean.foodId
+        // let newWeight = e.currentTarget
         wx.showModal({
             title: '提示',
             content: '你确定要删除这个食物记录吗？',
+            
             success(res){
-                // if(res.confirm){
-                //     wx.request({
-                //         url: util.foodDetailDeleteUrl,
-                //         method: "POST",
-                //         data:{
-                //             old:{
-                //                 no:
-                //             }
-                //         }
-                //     })
-                // }
+                wx.request({
+                  url: util.foodReDeDeleteUrl,
+                  method: "POST",
+                  data: {
+                    id: id
+                  },
+                  header: {
+                    'content-type': 'application/texts' // 默认值
+                  },
+                  success(res){
+                      wx.showToast({
+                        title: '删除成功！',
+                      })
+                    //   setTimeout(wx.redirectTo({url: 'dint', }),1000)
+                      wx.redirectTo({url: 'dint',})
+                  }
+                })
             }
 
         })
     },
+
+    // redirect: function(){
+        
+    // },
 
     getUserInfo(){
         let that = this
         let userId = this.data.userId
         let queryTime = this.data.queryTime
         // console.log(userId)
-        
+        // console.log(queryTime)
+        // console.log(util.foodReDeFindUrl)
+        // console.log(util.mdcnRecordAddUrl)
+        // console.log(that.data.meal[0].meals.length)
         wx.request({
-            url: foodRecordFindUrl,
+            url: foodReDeFindUrl,
             method: "POST",
             data: {
                 userId: userId,
@@ -133,48 +172,89 @@ Page({
                 'content-type': 'application/texts' // 默认值
             },
             success(res) {
+                that.setData({
+                    flag: true
+                })
+                // console.log("cc" + that.data.meal[0].meals.length)
+                // console.log("haha")
                 let data = res.data
                 let dataLength = data.length
-                // console.log(data.length)
+                // console.log("data.length=" + data.length)
+                
+                let list = that.data.meal
+                // console.log("dd" + that.data.meal[0].meals.length)
                 for(var i = 0; i < data.length; i++){
                     // console.log(data[i])
+                    // console.log("aa" + that.data.meal[0].meals.length)
                     var mealType = data[i].mealType
                     var recordId = data[i].id
-                    wx.request({
-                      url: util.foodDetailFindUrl,
-                      method: "POST",
-                      data: {
-                        recordId: recordId,
-                        userId: userId,
-                      },
-                      header: {
-                        'content-type': 'application/texts' // 默认值
-                      },
-                      success(res){
-                        let resData = res.data
-                        // console.log(resData)
-                        let resDataLength = resData.length
-                        // console.log(res.data)
-                        let list = that.data.meal
-                        for(var j = 0; j < resData.length; j++){
-                            // that.data.meal[mealType].meals.push(resData[j].foodName)
-                            // that.data.meal[mealType].meals.push(resData[j])
-                            resData[j].hidden=true
-                            resData[j].mealTypeId=mealType
-                            resData[j].sortId=j
-                            resData[j].tempValue=resData[j].weight
-                            // console.log(resData[j])
-                            list[mealType].meals.push(resData[j])
-                            that.setData({meal: list})
-                            // console.log(that.data)
-                        }
-                        // if(i == dataLength){
-                        //     console.log(that.data)
-                        // }
-                      }
-                    })
+                    list[mealType].meals.push(data[i])
+                    // console.log("bb" + that.data.meal[0].meals.length)
+                    // console.log(that.data.meal[0])
+                    // that.data.meal[mealType].meals.push(data[i])
+
+
+                    // wx.request({
+                    //   url: util.foodDetailFindUrl,
+                    //   method: "POST",
+                    //   data: {
+                    //     recordId: recordId,
+                    //     userId: userId,
+                    //   },
+                    //   header: {
+                    //     'content-type': 'application/texts' // 默认值
+                    //   },
+                    //   success(res){
+                    //     let resData = res.data
+                    //     // console.log(resData)
+                    //     let resDataLength = resData.length
+                    //     // console.log(res.data)
+                    //     let list = []
+                    //     console.log("aaa")
+                    //     console.log(list)
+                    //     for(var j = 0; j < resData.length; j++){
+                    //         // that.data.meal[mealType].meals.push(resData[j].foodName)
+                    //         // that.data.meal[mealType].meals.push(resData[j])
+                    //         // resData[j].hidden=true
+                    //         resData[j].mealTypeId=mealType
+                    //         resData[j].sortId=j
+                    //         resData[j].tempValue=resData[j].weight
+                    //         // console.log(resData[j])
+                    //         list.push(resData[j])
+                    //         console.log("bbb")
+                    //         console.log(list)
+                    //         // console.log(typeof(mealType))
+
+                    //         // console.log(that.data)
+                    //     }
+                    //     let mealdata = that.data.meal
+                    //     mealdata[mealType].meals = list
+                    //     console.log("xxxx")
+                    //     console.log(list)
+                    //     console.log(mealdata)
+                    //     that.setData({meal: mealdata})
+                    //     //that.setData({meal: list})
+                    //     // if(i == dataLength){
+                    //     //     console.log(that.data)
+                    //     // }
+                    //   }
+                    // })
+                    
                 }
-                console.log("heiheihei")
+                
+                for(var i = 0; i < list.length; i++){
+                    // console.log("ilength = " + list[i].meals.length)
+                    for(var j = 0; j < list[i].meals.length; j++){
+                        list[i].meals[j].sortId = j
+                    }
+                }
+
+                that.setData({
+                    meal: list
+                })
+                // console.log(that.data)
+                // console.log("heiheihei")
+                // console.log(that.data.meal)
             }
         })
     },
@@ -204,16 +284,20 @@ Page({
 
     editMeal(e) {
         // console.log("editMealStart")
-        // console.log(e.currentTarget.dataset.bean)
+        console.log(e.currentTarget.dataset.bean)
         let hidden = e.currentTarget.dataset.bean.hidden
-        let mealType = e.currentTarget.dataset.bean.mealTypeId.toString()
-        let sortId = e.currentTarget.dataset.bean.sortId.toString()
+        let mealType = e.currentTarget.dataset.bean.mealType
+        let sortId = e.currentTarget.dataset.bean.sortId
         let that = this
-        var str = 'meal[' + mealType + '].meals[' + sortId + '].hidden'
+        let tempFood = e.currentTarget.dataset.bean
+        // var str = 'meal[' + mealType + '].meals[' + sortId + '].hidden'
         this.setData({
-            [str] : false
+            hidden : false,
+            nowMealType: mealType,
+            nowFoodSortId: sortId
         })
-        // console.log(that.data.meal)
+        // console.log(that.data)
+        // console.log()
         var animation = wx.createAnimation({
             duration: 400,
             timingFunction: 'ease',
@@ -232,10 +316,10 @@ Page({
         // console.log("hideModelStart")
         // console.log(e.currentTarget.dataset.bean)
         let that = this;
-        let hidden = e.currentTarget.dataset.bean.hidden
-        let mealType = e.currentTarget.dataset.bean.mealTypeId.toString()
-        let sortId = e.currentTarget.dataset.bean.sortId.toString()
-        var str = 'meal[' + mealType + '].meals[' + sortId + '].hidden'
+        // let hidden = e.currentTarget.dataset.bean.hidden
+        // let mealType = e.currentTarget.dataset.bean.mealTypeId
+        // let sortId = e.currentTarget.dataset.bean.sortId
+        // var str = 'meal[' + mealType + '].meals[' + sortId + '].hidden'
         var animation = wx.createAnimation({
             duration: 400,//动画的持续时间 默认400ms
             timingFunction: 'ease',//动画的效果 默认值是linear
@@ -244,7 +328,7 @@ Page({
         that.slideDown();//调用动画--滑出
         var time1 = setTimeout(function () {
             that.setData({
-                [str]: true,
+                hidden: true,
             })
             clearTimeout(time1);
             time1 = null;
@@ -268,7 +352,7 @@ Page({
 
     newMeal(e){
         // console.log(e.currentTarget.dataset.bean)
-        wx.navigateTo({
+        wx.redirectTo({
           url: e.currentTarget.dataset.bean.newMealUrl,
         })
     },

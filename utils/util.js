@@ -32,6 +32,14 @@ const mdcnRecordAddUrl = baseUrl + '/medicineRecord/add'
 const mdcnRecordFindUrl = baseUrl + '/medicineRecord/find'
 const mdcnRecordUpdateUrl = baseUrl + '/medicineRecord/update'
 const mdcnRecordDeleteUrl = baseUrl + '/medicineRecord/delete'
+const foodFindUrl = baseUrl + '/food/find'
+const foodAddUrl = baseUrl + '/food/add'
+const foodUpdateUrl = baseUrl + '/food/update'
+const foodDeleteUrl = baseUrl + '/food/delete'
+const foodReDeFindUrl = baseUrl + '/foodRecordDetail/find'
+const foodReDeAddUrl = baseUrl + '/foodRecordDetail/add'
+const foodReDeUpdateUrl = baseUrl + '/foodRecordDetail/update'
+const foodReDeDeleteUrl = baseUrl + '/foodRecordDetail/delete'
 
 const formatTime = date => {
   const year = date.getFullYear()
@@ -58,6 +66,15 @@ const formatTime2 = date => {
   const day = date.getDate()
 
   return [year, month, day].map(formatNumber).join('-')
+}
+
+const formatTime3 = date => {
+  const year = date.getFullYear()
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const weekday = date.getDay()
+
+  return weekday
 }
 
 module.exports = {
@@ -87,14 +104,15 @@ module.exports = {
   mdcnRecordAddUrl,
   mdcnRecordDeleteUrl,
   mdcnRecordFindUrl,
-  mdcnRecordUpdateUrl
+  mdcnRecordUpdateUrl,
+  foodFindUrl,
+  foodAddUrl,
+  foodDeleteUrl,
+  foodUpdateUrl,
+  foodReDeFindUrl,
+  foodReDeUpdateUrl,
+  foodReDeDeleteUrl,
+  foodReDeAddUrl
 }
 
-const formatTime3 = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const weekday = date.getDay()
 
-  return weekday
-}

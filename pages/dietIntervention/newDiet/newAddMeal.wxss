@@ -1,1 +1,192 @@
-/* pages/dietIntervention/newDiet/newAddMeal.wxss */
+/* pages/function/input/inputfood2/search/search.wxss */
+page {
+  height: 100%;
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  height: 12%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 10;
+  top: 0%;
+  background-color: white;
+}
+
+.search {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin: auto;
+  background-color: #e7e6e6;
+  border-radius: 40rpx;
+}
+
+.search>image {
+  width: 20%;
+  height: 50rpx;
+}
+
+.search>input {
+  margin-left: 4%;
+  width: 76%;
+}
+
+.bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  height: 60rpx;
+  margin: auto;
+  margin-top: 15rpx;
+  border-radius: 40rpx;
+  color: #b0b3b0;
+  font-size: small;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
+}
+
+.bar>view {
+  box-sizing: border-box;
+  width: 33%;
+  padding-left: 12%;
+
+}
+
+.second {
+  border-right: 3rpx solid #b0b3b0;
+  border-left: 3rpx solid #b0b3b0;
+}
+
+.selected {
+  color: #8a8b8a;
+}
+
+.result {
+  position: relative;
+  top: 12%;
+  height: 88%;
+  z-index: 9;
+}
+
+.item {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 200rpx;
+  border-bottom: 3rpx solid #ced1ce;
+}
+
+.item>image {
+  width: 15%;
+  height: 100rpx;
+}
+
+.gram {
+  position: fixed;
+  width: 100%;
+  height: fit-content;
+  bottom: 0%;
+  box-shadow: 6px 2px 6px 3px rgba(0, 0, 0, 0.2), 0px 2px 6px 0px rgba(0, 0, 0, 0.19);
+  z-index: 999;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.gram_choose {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+  width: 100%;
+  align-items: center;
+}
+
+.gram_choose>input {
+  background-color: #e7e6e6;
+  width: 50%;
+  height: 100rpx;
+  margin-left: 10%;
+  border-radius: 20rpx;
+  padding: 2rpx 20rpx;
+}
+
+.gram_confirm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 250rpx;
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.gram_confirm>button {
+  width: 240rpx;
+  height: 70rpx;
+  background-color: #72CAA0;
+  border-radius: 20rpx;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gram_name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  margin-top: 30rpx;
+  margin-left: 10%;
+}
+
+.gram_name_name {
+  width: 60%;
+
+}
+
+.gram_name_unit {
+  font-size: smaller;
+  color: #8a8b8a;
+  width: 30%;
+}
+
+.Mcancel {
+  /* background: #fff; */
+  padding: 26rpx 0;
+}
+
+.bottom-position {
+  text-align: center;
+}
+
+.editHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close {
+  text-align: center;
+  margin-left: 50rpx;
+  font-size: x-large;
+}
+
+.editTitle {
+  margin-top: 20rpx;
+}
+
+.delete {
+  margin-top: 20rpx;
+  color: red;
+  margin-right: 50rpx;
+}

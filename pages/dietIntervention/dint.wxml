@@ -41,29 +41,27 @@
                             <!-- <view class="mealAmount"><text space="emsp">{{food.weight}}克</text></view> -->
                         </view>
                     </view>
-                    <view class="modal" hidden="{{food.hidden}}">
-                        <view class="modal-cancel" bindtap="hideModal" data-bean="{{food}}" hidden="{{food.hidden}}"></view>
-                        <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
-                            <view class="editHead">
-                                <view class="close" bindtap="hideModal" data-bean="{{food}}"><text>×</text></view>
-                                <view class="editTitle">{{food.foodName}}（单位：克）</view>
-                                <view class="delete" bindtap="deleteMeal">删除</view>
-                            </view>
-                            <view class="Medit">
-                                <slide id="rule" min="0" max="1000" def="{{food.weight}}" bind:slide="slideTrigger" data-bean="{{food}}"></slide>
-                            </view>
-                            <view class="Mconfirm" bindtap='mConfirm' data-bean="{{food}}">
-                                <text>确认</text>
-                            </view>
-                            <view class='Mcancel' bindtap='mCancel' data-bean="{{food}}">
-                                <text>取消</text>
-                            </view>
-                        </view>
-                        <!-- <view class="orderBox up">哈哈</view> -->
-                    </view>
-
                 </view>
             </view>
         </label>
+        <view class="modal" hidden="{{hidden}}">
+            <view class="modal-cancel" bindtap="hideModal" hidden="{{hidden}}"></view>
+            <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
+                <view class="editHead">
+                    <view class="close" bindtap="hideModal"><text>×</text></view>
+                    <view class="editTitle">{{meal[nowMealType].meals[nowFoodSortId].foodName}}（单位：克）</view>
+                    <view class="delete" bindtap="deleteMeal" data-bean="{{meal[nowMealType].meals[nowFoodSortId]}}">删除</view>
+                </view>
+                <view hidden="{{hidden}}">
+                    <slide id="rule" min="0" max="1000" def="{{meal[nowMealType].meals[nowFoodSortId].weight}}" bind:slide="slideTrigger" data-bean="{{meal[nowMealType].meals[nowFoodSortId]}}"></slide>
+                </view>
+                <view class="Mconfirm" bindtap='mConfirm' data-bean="{{meal[nowMealType].meals[nowFoodSortId]}}">
+                    <text>确认</text>
+                </view>
+                <view class='Mcancel' bindtap='mCancel'>
+                    <text>取消</text>
+                </view>
+            </view>
+        </view>
     </view>
 </view>

@@ -1,2 +1,77 @@
-<!--pages/dietIntervention/newDiet/newLunch.wxml-->
-<text>pages/dietIntervention/newDiet/newLunch.wxml</text>
+<!--pages/dietIntervention/newDiet/newAddMeal.wxml-->
+<!-- <text>pages/dietIntervention/newDiet/newAddMeal.wxml</text> -->
+<view class="top">
+  <view class="search">
+    <input class="weui-input" placeholder="请输入食物名称" bindinput="inputWord" value="{{word}}" confirm-type="search" bindconfirm="searchFood" />
+    <image src="/icon/search.png" mode="aspectFit" bindtap="searchFood"></image>
+  </view>
+  <view class="bar">
+    <view class="{{selected=='1' ? 'selected' : ''}}" bindtap="gotoResult">结果</view>
+    <view class="second {{selected=='2' ? 'selected' : ''}}" bindtap="gotoCollect">收藏</view>
+    <view class="{{selected=='3' ? 'selected' : ''}}" bindtap="gotoHistory">历史</view>
+  </view>
+</view>
+<view class="result">
+  <scroll-view wx:if="{{selected=='1'}}" scroll-y="true">
+    <block wx:for="{{foodList}}" wx:for-item="food" wx:key="id">
+      <view bindtap="selectOne" data-food="{{food}}" class="item">
+        <image src="/img/dish.png" mode="aspectFit" />
+        <view style="margin-left:40rpx; width: 70%; display: flex; flex-direction: column;">
+          <view style="margin-top: 0; margin-bottom: 0;"><text style="font-size: x-small;">{{food.abbrname}}</text><text wx:if="{{food.nameLength > 10}}">...</text></view>
+          <view style="margin-top: 0; margin-bottom: 0;"><text style="font-size: 20rpx; color: gray;">能量:{{food.energy}} 蛋白质:{{food.protein}} 糖:{{food.cho}}</text></view>
+          <view style="margin-top: 0; margin-bottom: 0;"><text style="font-size: 20rpx; color: gray;">脂肪:{{food.fat}} 钠:{{food.na}}</text></view>
+        </view>
+        <!-- <view>哇哇哇</view> -->
+        <!-- space-between 也删除了
+        <view style="color:#b0b3b0; font-size: small; width: 20%;">100g</view>
+        <view style=" font-size: small; width: 20%;">1个</view> -->
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+
+<view wx:if="{{selected=='2'}}">
+</view>
+
+<view wx:if="{{selected=='3'}}">
+</view>
+
+<!-- <view class="gram" wx:if="{{gram}}">
+  <view class="gram_name">
+    <view class="gram_name_name">{{food.name}}</view>
+    <view class="gram_name_unit">一<text>{{unit}}</text>可食部分约为\n<text>{{unitGram}}</text>克</view>
+  </view>
+  <view class="gram_choose">
+    <input bindchange="gramChange" type="digit" placeholder="滑动右侧选择度量单位" value="{{value}}"/>
+    <picker-view indicator-style="height: 50px;" style="width: 30%; height: 100px; margin-right: 10%;" value="{{valueUnit}}" bindchange="bindChangeUnit">
+      <picker-view-column>
+        <view wx:for="{{units}}" style="line-height: 50px; text-align: center;">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+  </view>
+
+  <view class="gram_confirm">
+    <button bindtap="cancelGram" style="background-color: #A9A9A9;">取消</button>
+    <button bindtap="confirmGram">确认</button>
+  </view> -->
+
+<view class="modal" hidden="{{hidden}}">
+  <view class="modal-cancel" bindtap="hideModal" hidden="{{hidden}}"></view>
+  <view class="bottom-dialog-body bottom-position" animation="{{animationData}}">
+    <view class="editHead">
+      <view class="close" bindtap="hideModal"><text>×</text></view>
+      <view class="editTitle">{{foodList[nowNowFoodSortId].name}}（单位：克）</view>
+      <view class="delete" bindtap="deleteMeal" data-bean="{{meal[nowMealType].meals[nowFoodSortId]}}"></view>
+    </view>
+    <view hidden="{{hidden}}">
+      <slide id="rule" min="0" max="1000" def="0" bind:slide="slideTrigger" data-bean="{{meal[nowMealType].meals[nowFoodSortId]}}"></slide>
+    </view>
+    <view class="Mconfirm" bindtap='mConfirm' data-bean="{{foodList[nowNowFoodSortId]}}">
+      <text>添加午餐</text>
+    </view>
+    <view class='Mcancel' bindtap='mCancel'>
+      <text>取消</text>
+    </view>
+  </view>
+</view>

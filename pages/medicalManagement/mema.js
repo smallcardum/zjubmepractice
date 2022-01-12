@@ -23,7 +23,7 @@ Page({
             // userId: Number(this.data.id),
             userId: this.data.id
         }
-        console.log("mdcnPlanFindUrl = " + mdcnPlanFindUrl)
+        console.log("mdcnPlanFindUrl = " + util.mdcnPlanFindUrl)
         let planIdList = []
         wx.request({
           url: mdcnPlanFindUrl,
