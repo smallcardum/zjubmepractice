@@ -47,7 +47,7 @@ Page({
 
     gotoPlan() {
         wx.navigateTo({
-          url: '/pages/interventionPlan/plan',
+          url: '/pages/interventionPlan/plan?level='+this.data.level,
         })
     },
 

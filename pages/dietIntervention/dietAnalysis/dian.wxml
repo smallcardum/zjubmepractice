@@ -18,7 +18,7 @@
         <view class="analysisContainer">
             <view class="subTitle">食物种类</view>
             <view class="line"></view>
-            <view>食物种类图</view>
+            <canvas style="width:100%;height:250px;padding-top:20px;background-color: #f3eded;" canvas-id="columnarCanvas" id="columnarCanvas"></canvas>
         </view>
     </view>
 </view>
