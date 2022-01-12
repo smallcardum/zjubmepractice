@@ -2,6 +2,7 @@
 <view class="container">
   <view class="title">首页</view>
   <view class="line"></view>
+  <view></view>
   <navigator url="../bloodSugarMonitor/bsm" class="navigator">
     <button class="indexButton" type="primary">血糖监测</button>
   </navigator>

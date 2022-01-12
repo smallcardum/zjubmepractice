@@ -39,6 +39,13 @@ Page({
             "sportId": this.data.sportId,
             "weekday": this.data.weekday
         }
+        let sporttime = getApp().globalData.clockonTime
+        if(sporttime != ""){
+            this.setData({
+                sportDone: true
+            })
+        }
+
           wx.request({
             data: sport,
             url: sportDefaultFindUrl,
@@ -90,7 +97,7 @@ Page({
         //   if(res.data.code == 0){
         //     navigateBack();
             // console.log(util.formatTime4(new Date()))
-        console.log(this.data.sportDone)
+        // console.log(this.data.sportDone)
         if(!this.data.sportDone){
             getApp().globalData.clockonTime = util.formatTime4(new Date())
             this.setData({
