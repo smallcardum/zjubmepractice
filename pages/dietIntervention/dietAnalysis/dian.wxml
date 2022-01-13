@@ -11,27 +11,27 @@
 
     <view class="dianContainer">
         <view class="analysisContainer">
-            <view class="subTitle">营养分布</view>
+            <view class="subTitle" style="margin-left: 27rpx;">营养分布</view>
             <view class="line"></view>
             <canvas canvas-id="canvas" style="width:{{canvasW}}px;height:{{canvasH}}px; margin:7px auto;"></canvas>
             <view style="background-color: cornsilk; margin: 17rpx;">
-                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx; font-size: smaller;justify-content: space-between; ">
+                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx; justify-content: space-between; ">
                     <view>蛋白质摄入/克</view>
                     <view>{{allIntake.protein.actual}}</view>
                 </view>
-                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx; font-size: smaller;justify-content: space-between; ">
+                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx;justify-content: space-between; ">
                     <view>碳水化合物摄入/克</view>
                     <view>{{allIntake.cho.actual}}</view>
                 </view>
-                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx;  font-size: smaller;justify-content: space-between; ">
+                <view style="display: flex; flex-direction: row; padding: 6rpx 50rpx;justify-content: space-between; ">
                     <view>脂肪摄入/克</view>
                     <view>{{allIntake.fat.actual}}</view>
                 </view>
-                <view style="display: flex; flex-direction: row;padding: 6rpx 50rpx;  font-size: smaller;justify-content: space-between; ">
+                <view style="display: flex; flex-direction: row;padding: 6rpx 50rpx;justify-content: space-between; ">
                     <view>钠摄入/毫克</view>
                     <view>{{na}}</view>
                 </view>
-                <view style="display: flex; flex-direction: row;padding: 6rpx 50rpx; justify-content: space-between; font-size: smaller;">
+                <view style="display: flex; flex-direction: row;padding: 6rpx 50rpx; justify-content: space-between;">
                     <view>总能量摄入/千卡</view>
                     <view>{{energy}}</view>
                 </view>
@@ -39,7 +39,7 @@
 
         </view>
         <view class="analysisContainer">
-            <view class="subTitle">食物种类</view>
+            <view class="subTitle" style="margin-left: 27rpx;">食物种类</view>
             <view class="line"></view>
             <canvas style="width:100%;height:250px;padding-top:20px;background-color: #fafafa;" canvas-id="columnarCanvas" id="columnarCanvas"></canvas>
         </view>

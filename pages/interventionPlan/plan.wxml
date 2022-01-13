@@ -1,11 +1,11 @@
 <!--pages/interventionPlan/plan.wxml-->
-<view class="container">
+<view class="container" style="margin: 10rpx 27rpx;">
   <view style="margin: 17rpx">
-    <view style="font-weight: bold; margin-bottom: 10rpx; color: blue;">当前饮食干预方案</view>
-    <text class="word">{{food}}</text>
+    <view  class="word" style="font-weight: bold; margin-bottom: 10rpx; color: blue;">当前饮食干预方案</view>
+    <text>{{food}}</text>
   </view>
   <view style="margin: 17rpx">
-    <view style="font-weight: bold; margin-bottom: 10rpx; color: blue;">当前运动干预方案</view>
-    <text class="word">{{sports}}</text>
+    <view  class="word" style="font-weight: bold; margin-bottom: 10rpx; color: blue;">当前运动干预方案</view>
+    <text>{{sports}}</text>
   </view>
 </view>
