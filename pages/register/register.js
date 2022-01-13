@@ -288,6 +288,7 @@ Page({
       success (res) {
           id = res.data[0].id
           that.addInfo(id)
+          wx.setStorageSync('phone', phoneNumber)
       }
     })
   },
@@ -319,7 +320,7 @@ Page({
       userId: id,
       birth: birthDate,
       sex: sexd,
-      height: parseInt(height*100),
+      height: parseInt(height),
       weight: parseInt(weight),
       bmi: weight / (height * height),
       intensity: intensityd,
@@ -350,6 +351,7 @@ Page({
           title:'登录中'
         })
         wx.setStorageSync("userId", id);
+
         setTimeout(() => {
           wx.switchTab({
             url: '/pages/index/index',

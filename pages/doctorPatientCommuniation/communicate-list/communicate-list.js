@@ -35,7 +35,7 @@ Page({
 
     getList() {
       var that = this
-      let user = wx.getStorageSync('id')
+      let user = wx.getStorageSync('userId')
       console.log("userid=="+user)
         wx.request({
           url: chatFindUrl,

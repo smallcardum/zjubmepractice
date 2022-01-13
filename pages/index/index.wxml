@@ -5,13 +5,13 @@
   <view class="buttons">
     <navigator url="../bloodSugarMonitor/bsm" class="navigator">
       <view class="button">
-        <image src="/img/血糖.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
+        <image src="/img/glu.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
         <button class="indexButton" type="primary" style="width:325rpx">血糖监测</button>
       </view>
     </navigator>
     <navigator url="../medicalManagement/mema" class="navigator">
       <view class="button">
-        <image src="/img/药品,药物,违禁品,违禁药物.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
+        <image src="/img/med.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
         <button class="indexButton" type="primary" style="width:325rpx">用药管理</button>
       </view>
     </navigator>
@@ -19,13 +19,13 @@
   <view class="buttons">
     <navigator url="../dietIntervention/dint" class="navigator">
       <view class="button">
-        <image src="/img/饮食.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
+        <image src="/img/diet.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
         <button class="indexButton" type="primary" style="width:325rpx">饮食干预</button>
       </view>
     </navigator>
     <navigator url="../exerciseIntervention/exint" class="navigator">
       <view class="button">
-        <image src="/img/运动.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
+        <image src="/img/sports.png" mode="aspectFit" style="width: 300rpx; height: 300rpx;"></image>
         <button class="indexButton" type="primary" style="width:325rpx">运动干预</button>
       </view>
     </navigator>

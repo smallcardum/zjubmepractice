@@ -4,7 +4,7 @@ var wxCharts = require('../../utils/wxcharts.js');
 import { formatTime2 } from "../../utils/util"
 
 var lineChart = null;
-const id = wx.getStorageSync('id');
+const id = wx.getStorageSync('userId');
 Page({
 
     /**

@@ -6,7 +6,7 @@
 }
 .chat-history{
   /*height: calc(100% - 90rpx);*/
-  height: 1200rpx;
+  height: 1500rpx;
 }
 .msg{
   display: flex;

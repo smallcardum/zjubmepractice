@@ -418,7 +418,7 @@ Page({
     onLoad: function (options) {
         var time = util.formatTime(new Date());
         var queryTime = util.formatTime2(new Date());
-        let userId = wx.getStorageSync('id')
+        let userId = wx.getStorageSync('userId')
         this.setData({
             time: time,
             queryTime: queryTime,

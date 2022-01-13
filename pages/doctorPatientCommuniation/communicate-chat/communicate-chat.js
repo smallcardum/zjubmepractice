@@ -125,7 +125,7 @@ Page({
         });
       return
     }
-    let userid = wx.getStorageSync('id')
+    let userid = wx.getStorageSync('userId')
     let now = new Date()
     let msg = {
       sent: Number(userid),
@@ -191,7 +191,7 @@ Page({
 
   getHistoryMsgList: function(clearInput) {
     var that = this
-    let user = wx.getStorageSync('id')
+    let user = wx.getStorageSync('userId')
     let doctor = this.data.doctorId
     wx.request({
       url: chatFindUrl,

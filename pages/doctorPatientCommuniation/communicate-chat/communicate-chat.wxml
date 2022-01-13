@@ -1,5 +1,6 @@
 <view class='container'>
-  <scroll-view class='chat-history'>
+<view>
+  <scroll-view class='chat-history' scroll-y="true">
     <view id='msg-area' style="top:{{top}}px">
       <block wx:for='{{chatList}}' wx:key='index'>
         <view id="msg-{{index}}" class='msg' style="flex-direction:{{item.senderID!=doctorId?'row-reverse':'row'}}">
@@ -33,6 +34,7 @@
     </view>
     <!-- <view id='unReadTag'>未读消息</view> -->
   </scroll-view>
+  </view>
   <view class='user-operation' id='user-input'>
     <view class='user-input-content'>
       <input class='user-input' confirm-type='send' confirm-hold='{{true}}' cursor-spacing='20' bindinput='userInput' value='{{userInputValue}}' bindconfirm='sendMsg' bindfocus='onFocus' bindblur='onBlur' adjust-position='{{true}}'>

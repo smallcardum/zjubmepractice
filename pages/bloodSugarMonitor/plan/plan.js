@@ -1,6 +1,6 @@
 // pages/bloodSugarMonitor/plan/plan.js
 import { gluPlanAddUrl, gluPlanFindUrl, gluPlanDeleteUrl } from '../../../utils/config'
-const id = wx.getStorageSync('id')
+const id = wx.getStorageSync('userId')
 Page({
 
   /**

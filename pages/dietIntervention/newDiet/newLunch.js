@@ -389,7 +389,7 @@ Page({
    */
   onLoad: function (options) {
     let unit = this.data.units[0]
-    let userId = wx.getStorageSync('id')
+    let userId = wx.getStorageSync('userId')
     this.setData({
       unit,
       id: userId

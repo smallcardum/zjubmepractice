@@ -160,7 +160,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        let id = wx.getStorageSync('id')
+        let id = wx.getStorageSync('userId')
         this.setData({
             id,
         })

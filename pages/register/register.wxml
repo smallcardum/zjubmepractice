@@ -55,7 +55,7 @@
     <view class="registe">
       <view>身高</view>
       <view>
-        <input type="digit" bindinput="heightInput" placeholder='单位：米' />
+        <input type="digit" bindinput="heightInput" placeholder='单位：厘米' />
       </view>
     </view>
     <view class="registe">

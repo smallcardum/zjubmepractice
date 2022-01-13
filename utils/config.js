@@ -1,8 +1,8 @@
 /**
  * 新接口url
  */
-let env = 'local'
-//let env = 'test';
+//let env = 'local'
+let env = 'test';
 var baseUrl = '';
 if(env == 'local') {
   baseUrl = 'http://localhost:8080';

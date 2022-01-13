@@ -3,7 +3,7 @@
 
 <view class="container">
   <view class="cover">
-    <image src="/img/健康生活.jpg"></image>
+    <image src="/img/heal.jpg"></image>
   </view>
   
   <view class="login-content">

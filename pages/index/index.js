@@ -69,7 +69,7 @@ Page({
   },
 
   getBlood() {
-    let userId = wx.getStorageSync('id')
+    let userId = wx.getStorageSync('userId')
     let that = this
     wx.request({
       url: gluPlanFindUrl,
