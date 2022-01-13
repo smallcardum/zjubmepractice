@@ -1,7 +1,8 @@
 // pages/dietIntervention/dietAnalysis/dian.js
 var util = require('../../../utils/util');
 
-import { analysisGetUrl, foodReDeFindUrl } from "../../../utils/util"
+import { foodReDeFindUrl } from "../../../utils/util"
+import { analysisFindUrl,foodFindUrl } from "../../../utils/config"
 
 // pie
 const  windowWidth =375;
@@ -34,8 +35,16 @@ Page({
     // pie
     canvasW:0.8*windowWidth,
     canvasH:0.67*windowWidth,
+    foodlist: [],
+    allIntake: {protein: {actual: 0}, fat: {actual: 0}, cho: {actual: 0}},
+    energy: "",
+    na: "",
+    items: [{title: "谷薯类", value: 0},{title: "肉蛋类", value: 0},{title: "乳类", value: 0},{title: "蔬果类", value: 0}],
+    canvasInfo:{},
+    
+    singlelist: [],
+    flag: 0,
 
-    allIntake: [],
 
     },
 
@@ -55,11 +64,27 @@ Page({
             },
             success(res) {
                 let list = res.data
+                let items = that.data.items
                 if(list.length != 0) {
-                    
+                    list.forEach(e => {
+                        if(e.foodTypeId == 0 || e.foodTypeId == 1) {
+                            items[0].value = items[0].value + e.weight
+                        } else if (e.foodTypeId == 7 || e.foodTypeId == 8 || e.foodTypeId == 10 || e.foodTypeId == 11) {
+                            items[1].value = items[1].value + e.weight
+                        } else if (e.foodTypeId == 9) {
+                            items[2].value = items[2].value + e.weight
+                        } else if (e.foodTypeId == 3 || e.foodTypeId == 5) {
+                            items[3].value = items[3].value + e.weight
+                        }
+                    });
                 }
+                that.setData({items,
+                foodlist: list})
                 console.log("完成getuserinfo 前往getanalysis")
+                that.messureCanvas()
                 that.getAnalysis()
+                console.log("触发前")
+                //if(list.length != 0) {that.getSingleFood()}
             }
         })
     },
@@ -70,18 +95,59 @@ Page({
         let userId = this.data.userId
         let queryTime = this.data.queryTime
         console.log(userId+"---"+queryTime)
-        let da = {userId: userId, datetime: queryTime}
+        let da = {userId: Number(userId), datetime: queryTime}
         wx.request({
-            url: analysisGetUrl,
+            url: analysisFindUrl,
             data: da,
             method: "POST",
             header: {
               'content-type': 'application/texts' // 默认值
             },
             success (res) {
-                console.log("hahahahahahahahaha")
+                if(res.data) {
+                  let allIntake = that.data.allIntake
+                  let energy = Number(res.data.energy).toFixed(1)
+                  let na = Number(res.data.na).toFixed(1)
+                  allIntake.protein.actual = Number(res.data.protein).toFixed(1)
+                  allIntake.cho.actual = Number(res.data.cho).toFixed(1)
+                  allIntake.fat.actual = Number(res.data.fat).toFixed(1)
+                  that.setData({
+                    allIntake,
+                    na,
+                    energy,
+                  })
+                  that.drawPie('canvas')
+                }
             }
           })
+    },
+
+    getSingleFood() {
+      let that = this
+      let x = this.data.flag
+      console.log("在getsinglefood里面")
+      let da = {id: this.data.foodlist[x].foodId, name: ''}
+      let sl = this.data.singlelist
+      wx.request({
+          url: foodFindUrl,
+          data: da,
+          method: "POST",
+          header: {
+            'content-type': 'application/texts' // 默认值
+          },
+          success (res) {
+              sl.push(res.data)
+              that.setData({
+                singlelist: sl,
+                flag: x+1,
+              })
+              console.log("flag="+x)
+              console.log(that.data.singlelist)
+              if(that.data.flag != that.data.foodlist.length) {
+                that.getSingleFood()
+              }
+          }
+        })
     },
 
     
@@ -89,14 +155,14 @@ Page({
     var list //对应的数据集
     var ringData = [0,0,0,0]//圆环上的3个数字和是否是暂无数据，【3】=1
       list = this.data.allIntake
-      let all = Number(list.protein.actual) + Number(list.fat.actual) + Number(list.carbohydrate.actual)
+      let all = Number(list.protein.actual) + Number(list.fat.actual) + Number(list.cho.actual)
       if (all == 0) {
         ringData[0] = 100
         ringData[3] = 1
       } else {
         let d = Number(list.protein.actual)
         let z = Number(list.fat.actual)
-        let t = Number(list.carbohydrate.actual)
+        let t = Number(list.cho.actual)
         ringData[0] = d
         ringData[1] = z
         ringData[2] = t
@@ -291,6 +357,61 @@ Page({
   },
 
 
+  messureCanvas(){
+    let query = wx.createSelectorQuery().in(this);
+    // 然后逐个取出navbar和header的节点信息
+    // 选择器的语法与jQuery语法相同
+    query.select('#columnarCanvas').boundingClientRect();
+    // 执行上面所指定的请求，结果会按照顺序存放于一个数组中，在callback的第一个参数中返回
+    var that = this
+    query.exec((res) => {
+      // 分别取出navbar和header的高度 
+      console.log(res)
+      var canvasInfo = {}
+      canvasInfo.width = res[0].width
+      canvasInfo.height = res[0].height
+      that.setData({
+        canvasInfo:canvasInfo
+      })
+      console.log(canvasInfo)
+      that.drawColumnar()
+    })
+  },
+  drawColumnar() {
+    const ctxColumnar = wx.createCanvasContext("columnarCanvas")
+    var dataList = this.data.items
+    var canvasInfo = this.data.canvasInfo
+    var columnarNum = dataList.length
+    var columnarWidth = (canvasInfo.width-30)/(2*columnarNum+1)
+    console.log("宽度",columnarWidth)
+    var maxColumnarHeight = canvasInfo.height - 60 - 20
+    var maxColumnarValue = 0
+    var totalValue= 0
+    for (var i = 0; i < dataList.length; i++){
+      if(dataList[i].value>maxColumnarValue){
+        maxColumnarValue = dataList[i].value
+      }
+      totalValue = totalValue+dataList[i].value
+    }
+    for (var i = 0; i < dataList.length;i++){
+      ctxColumnar.setFontSize(15)
+      var percent = parseInt(dataList[i].value * 100 / totalValue) + "%"
+      var dx = columnarWidth * (2 * i + 1)
+      var dy = canvasInfo.height - (maxColumnarHeight * (dataList[i].value / maxColumnarValue) + 60) + 10
+      ctxColumnar.setFillStyle('#2b2b2b')
+      var percentWidth = ctxColumnar.measureText(percent)
+      ctxColumnar.fillText(percent, dx+columnarWidth/2-percentWidth.width/2, dy)
+      ctxColumnar.setFillStyle('rgb(99, 112, 210)')
+      var valueWidth = ctxColumnar.measureText(dataList[i].value+"")
+      ctxColumnar.fillText(dataList[i].value+"",dx+columnarWidth/2-valueWidth.width/2,dy+20)
+      ctxColumnar.fillRect(dx, dy + 22, columnarWidth, maxColumnarHeight * (dataList[i].value / maxColumnarValue))
+      ctxColumnar.setFillStyle('#8a8a8a')
+      var titleWidth = ctxColumnar.measureText(dataList[i].title + "")
+      ctxColumnar.fillText(dataList[i].title , dx+columnarWidth/2-titleWidth.width/2, canvasInfo.height-10)
+    }
+    ctxColumnar.draw()
+  },
+
     /**
      * 生命周期函数--监听页面加载
      */
@@ -304,6 +425,7 @@ Page({
             userId,
         })
         this.getUserInfo()
+
     },
 
     /**

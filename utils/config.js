@@ -24,8 +24,8 @@ const sportDefaultFindUrl = baseUrl + '/sportDefault/find'
 const sportItemFindUrl = baseUrl + '/sportItem/find'
 const chatFindUrl = baseUrl + '/doctorChat/find'
 const chatAddUrl = baseUrl + '/doctorChat/add'
-const analysisGetUrl = baseUrl + '/nutritionalAnalysis/calculate'
-
+const analysisFindUrl = baseUrl + '/nutritionalAnalysis/calculate'
+const foodFindUrl = baseUrl + '/food/find'
 
 export {
   userAuthAddUrl,
@@ -41,5 +41,6 @@ export {
   sportItemFindUrl,
   chatFindUrl,
   chatAddUrl,
-  analysisGetUrl,
+  analysisFindUrl,
+  foodFindUrl,
 }
