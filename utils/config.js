@@ -1,10 +1,10 @@
 /**
  * 新接口url
  */
-//let env = 'local'
-let env = 'test';
+let env = 'local'
+//let env = 'test';
 var baseUrl = '';
-if(env == 'local') {
+if(env == 'local') { 
   baseUrl = 'http://localhost:8080';
 }  else if (env == 'test') {
   baseUrl = 'https://exp.zjubiomedit.com/glutest'
@@ -24,8 +24,7 @@ const sportDefaultFindUrl = baseUrl + '/sportDefault/find'
 const sportItemFindUrl = baseUrl + '/sportItem/find'
 const chatFindUrl = baseUrl + '/doctorChat/find'
 const chatAddUrl = baseUrl + '/doctorChat/add'
-const analysisFindUrl = baseUrl + '/nutritionalAnalysis/calculate'
-const foodFindUrl = baseUrl + '/food/find'
+
 
 export {
   userAuthAddUrl,
@@ -41,6 +40,4 @@ export {
   sportItemFindUrl,
   chatFindUrl,
   chatAddUrl,
-  analysisFindUrl,
-  foodFindUrl,
 }

@@ -1,7 +1,8 @@
 // index.js
 // 获取应用实例
 import {
-  userAuthAddUrl
+  userAuthAddUrl,
+  userInfoFindUrl
 } from "../../utils/config"
 import {
   gluPlanAddUrl,
@@ -49,8 +50,31 @@ Page({
         canIUseGetUserProfile: true
       })
     }
+    this.getIdentity()
     this.getBlood()
     this.getSport()
+  },
+
+  getIdentity(){
+    let userId = wx.getStorageSync('id')
+    let that = this
+    wx.request({
+      url: userInfoFindUrl,
+      method: "POST",
+      data: {
+        userId: userId
+      },
+      header: {
+        'content-type': 'application/texts' // 默认值
+      },
+      success(res) {
+        let data = res.data[0]
+        that.setData({
+            level: data.level == 0 ? "你处在健康状态，要继续保持哦！" : (data.level == 1 ? "你属于糖尿病高危人群,要注意保护自己的健康哦！" : "糖尿病患者，祝你早日恢复健康！"),
+        })
+      }
+    })
+
   },
 
   onShow(){

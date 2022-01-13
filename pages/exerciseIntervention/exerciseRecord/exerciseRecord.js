@@ -25,7 +25,7 @@ Page({
             this.setData({
                 [str2]: "暂无你的运动记录哦，快快开始今天的运动吧！"
             })
-        } else{
+        } else{ 
             let str2 = "sportDoneList[1]"
             this.setData({
                 [str2]: "已打卡",

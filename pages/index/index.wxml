@@ -30,6 +30,9 @@
       </view>
     </navigator>
   </view>
+  <view style="margin: 20rpx">
+    <text style="color: red;">健康状态：</text><text>{{level}}</text>
+  </view>
   <view style="margin: 20rpx" wx:if="{{sport == false}}">
     <text style="color: red;">运动提醒：</text><text>你今天还没有运动喔，快去运动吧!</text>
   </view>
