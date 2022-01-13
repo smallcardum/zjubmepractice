@@ -14,6 +14,16 @@
   margin-top: 360rpx;
 }
 
+.coverTitle {
+  text-align: center;
+  font-size: xx-large;
+  font-weight: 900;
+}
+
+.cover {
+  height: 200rpx;
+}
+
 .login {
   width: 460rpx;
   height: 80rpx;

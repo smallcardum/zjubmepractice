@@ -18,8 +18,18 @@
   margin-top: 200px;
 }
 
-.indexButton {
+/* .indexButton {
   margin-top: 50rpx;
   margin-bottom: 50rpx;
+} */
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  margin: 25rpx;
+  width: 325rpx;
 }
 

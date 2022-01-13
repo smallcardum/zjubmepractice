@@ -371,7 +371,7 @@ Page({
   },
 
   pencil(){
-      wx.navigateTo({
+      wx.redirectTo({
         url: '../dint',
       })
   },

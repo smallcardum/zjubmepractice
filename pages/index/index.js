@@ -1,6 +1,17 @@
 // index.js
 // 获取应用实例
-import { userAuthAddUrl } from "../../utils/config"
+import {
+  userAuthAddUrl
+} from "../../utils/config"
+import {
+  gluPlanAddUrl,
+  gluPlanFindUrl,
+  gluPlanDeleteUrl
+} from '../../utils/config'
+import {
+  formatTime2
+} from "../../utils/util"
+var util = require('../../utils/util')
 const app = getApp()
 
 Page({
@@ -12,13 +23,15 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+    blood: false,
+    sport: false
   },
   handleInput(e) {
     this.setData({
       num: e.detail.value
     })
   },
-  handletap(e){
+  handletap(e) {
     const operation = e.currentTarget.dataset.operation;
     this.setData({
       num: parseInt(this.data.num) + operation
@@ -36,7 +49,47 @@ Page({
         canIUseGetUserProfile: true
       })
     }
+    this.getBlood()
   },
+
+  getBlood() {
+    let userId = wx.getStorageSync('id')
+    let that = this
+    wx.request({
+      url: gluPlanFindUrl,
+      method: "POST",
+      data: {
+        userId: userId
+      },
+      header: {
+        'content-type': 'application/texts' // 默认值
+      },
+      success(res) {
+        console.log(res.data.length)
+        let queryTime = util.formatTime2(new Date())
+        console.log(queryTime)
+        wx.request({
+          url: gluPlanFindUrl,
+          method: "POST",
+          data: {
+            userId: userId,
+            datetime: queryTime
+          },
+          header: {
+            'content-type': 'application/texts' // 默认值
+          },
+          success(res2){
+            if(res2.data.length == res.data.length){
+              that.setData({
+                blood: true
+              })
+            }
+          }
+        })
+      }
+    })
+  },
+
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
@@ -63,8 +116,8 @@ Page({
       title: 'aa',
       path: '/page/user?id=123'
     }
-   },
-  onClick: function() {
+  },
+  onClick: function () {
     this.setData({
       wording: 'boy'
     })

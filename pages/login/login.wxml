@@ -1,13 +1,22 @@
 <!--pages/login/login.wxml-->
+
+
 <view class="container">
+  <view class="cover">
+    <image src="/img/健康生活.jpg"></image>
+  </view>
+  
   <view class="login-content">
-    <view class="login">
-        <view class="dot"/>
-        <input type="text" bindinput="userNameInput" value="{{userName}}" cursor-spacing="30rpx" placeholder="账号"/>
+    <view class="coverTitle">
+      GLU管理助手
     </view>
     <view class="login">
-      <view class="dot"/>
-        <input type="text" bindinput="userPasswordInput" password="true" value="{{userPassword}}" cursor-spacing="30rpx" placeholder="密码" />
+      <view class="dot" />
+      <input type="text" bindinput="userNameInput" value="{{userName}}" cursor-spacing="30rpx" placeholder="账号" />
+    </view>
+    <view class="login">
+      <view class="dot" />
+      <input type="text" bindinput="userPasswordInput" password="true" value="{{userPassword}}" cursor-spacing="30rpx" placeholder="密码" />
     </view>
   </view>
   <view class="login_list">
