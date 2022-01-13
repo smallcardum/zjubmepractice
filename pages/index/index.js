@@ -50,6 +50,22 @@ Page({
       })
     }
     this.getBlood()
+    this.getSport()
+  },
+
+  onShow(){
+    this.getBlood()
+    this.getSport()
+  },
+
+  getSport() {
+    let that = this
+    console.log(getApp().globalData.clockonTime)
+    if (getApp().globalData.clockonTime != "") {
+      this.setData({
+        sport: true
+      })
+    }
   },
 
   getBlood() {
@@ -78,8 +94,8 @@ Page({
           header: {
             'content-type': 'application/texts' // 默认值
           },
-          success(res2){
-            if(res2.data.length == res.data.length){
+          success(res2) {
+            if (res2.data.length == res.data.length) {
               that.setData({
                 blood: true
               })
